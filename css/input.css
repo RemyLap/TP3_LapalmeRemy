@@ -76,6 +76,22 @@
     @apply min-w-0 flex-1 truncate border border-[var(--win95-grey-shadow)] bg-white px-2 py-1 text-gray-700;
   }
 
+  .window__address-root {
+    @apply text-gray-700;
+  }
+
+  .window__address-segment {
+    @apply text-gray-700 no-underline hover:underline;
+  }
+
+  .window__address-segment--current {
+    @apply font-bold text-gray-900 no-underline hover:no-underline;
+  }
+
+  .window__address-segment--upcoming {
+    @apply text-gray-400;
+  }
+
   .window__body {
     @apply grid min-h-0 flex-1 auto-rows-min grid-cols-12 content-start gap-4 overflow-y-auto p-4 sm:p-6;
     background: linear-gradient(180deg, #e8e8e8 0%, #c8c8c8 100%);
