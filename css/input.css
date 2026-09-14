@@ -18,5 +18,160 @@
   --win95-yellow-folder: #f5c518;
 }
 
-/* Layers remplis au fil des prochaines étapes (fenêtre, popups, grille de
-   dossiers, formulaire, corbeille, barre de statut, animations). */
+/* ==========================================================================
+   Fenêtre (bloc .window) - utilisé sur Accueil, Dossiers, Corbeille
+   ========================================================================== */
+
+@layer base {
+  body {
+    @apply flex min-h-screen items-center justify-center bg-[var(--win95-grey-dark)] p-2 sm:p-4;
+  }
+}
+
+@layer components {
+  .window {
+    @apply mx-auto flex max-h-[94vh] w-full max-w-5xl flex-col border border-[var(--win95-grey-shadow)] shadow-lg;
+    background: var(--win95-grey-mid);
+  }
+
+  .window__titlebar,
+  .dialog__titlebar {
+    @apply flex items-center justify-between gap-4 px-2 py-1;
+    background: linear-gradient(90deg, var(--win95-blue-dark) 0%, var(--win95-blue-light) 100%);
+  }
+
+  .window__title,
+  .dialog__title {
+    @apply min-w-0 truncate text-sm font-bold text-white sm:text-base;
+  }
+
+  .window__controls,
+  .dialog__controls {
+    @apply flex shrink-0 gap-1;
+  }
+
+  .window__control,
+  .dialog__control,
+  .popup__close {
+    @apply h-4 w-5 border border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white sm:h-5 sm:w-6;
+    background: var(--win95-grey-mid);
+  }
+
+  .window__control:active,
+  .dialog__control:active,
+  .popup__close:active {
+    @apply border-b-white border-l-[var(--win95-grey-shadow)] border-r-white border-t-[var(--win95-grey-shadow)];
+  }
+
+  .window__addressbar {
+    @apply flex items-center gap-2 border-b border-[var(--win95-grey-shadow)] px-3 py-2 text-sm;
+    background: var(--win95-grey-mid);
+  }
+
+  .window__address-label {
+    @apply shrink-0 font-semibold text-gray-800;
+  }
+
+  .window__address-value {
+    @apply min-w-0 flex-1 truncate border border-[var(--win95-grey-shadow)] bg-white px-2 py-1 text-gray-700;
+  }
+
+  .window__body {
+    @apply grid min-h-0 flex-1 auto-rows-min grid-cols-12 content-start gap-4 overflow-y-auto p-4 sm:p-6;
+    background: linear-gradient(180deg, #e8e8e8 0%, #c8c8c8 100%);
+  }
+
+  .window__statusbar {
+    @apply flex items-center gap-4 border-t border-white px-3 py-1 text-xs text-gray-700;
+    background: var(--win95-grey-mid);
+  }
+}
+
+/* ==========================================================================
+   Popups (bloc .popup) - page Accueil
+   ========================================================================== */
+
+@layer components {
+  .popup {
+    @apply col-span-12 flex min-w-0 flex-col border border-[var(--win95-grey-shadow)] bg-white shadow-md;
+    animation: popup-in 0.4s ease-out both;
+  }
+
+  .popup__titlebar {
+    @apply flex items-center justify-between gap-2 px-2 py-1;
+    background: linear-gradient(90deg, var(--win95-blue-dark), var(--win95-blue-light));
+  }
+
+  .popup__title {
+    @apply text-sm font-bold text-white;
+  }
+
+  .popup__close {
+    @apply flex items-center justify-center text-xs leading-none text-gray-800;
+  }
+
+  .popup__body {
+    @apply flex-1 space-y-4 p-6 text-sm text-gray-800;
+  }
+
+  .popup__heading {
+    @apply text-lg font-bold text-gray-900;
+  }
+
+  .popup--large {
+    @apply min-h-56 md:col-span-7 md:col-start-2 md:min-h-64;
+  }
+
+  .popup--medium {
+    @apply min-h-48 md:col-span-6 md:col-start-7 md:-mt-8 md:min-h-48;
+    animation-delay: 150ms;
+  }
+
+  .popup--small {
+    @apply min-h-44 md:col-span-5 md:col-start-1 md:-mt-14 md:min-h-48;
+    animation-delay: 300ms;
+  }
+
+  .popup--closing {
+    animation: popup-out 0.2s ease-in forwards;
+  }
+}
+
+@keyframes popup-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes popup-out {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popup {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Boutons partagés (bloc .button)
+   ========================================================================== */
+
+@layer components {
+  .button {
+    @apply inline-block cursor-pointer border px-4 py-2 text-sm font-semibold active:translate-y-px;
+  }
+
+  .button--primary {
+    @apply border-b-[var(--win95-blue-dark)] border-l-white border-r-[var(--win95-blue-dark)] border-t-white text-white hover:brightness-110;
+    background: var(--win95-blue-light);
+  }
+}

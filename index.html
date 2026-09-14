@@ -23,25 +23,46 @@
     </header>
 
     <nav class="window__addressbar" aria-label="Navigation principale">
-      <!-- TODO (étape barre d'adresse) : C:\SYSTEM\accueil\ + liens vers les autres pages -->
+      <span class="window__address-label">Adresse:</span>
+      <span class="window__address-value">C:\SYSTEM\accueil\</span>
     </nav>
 
     <main class="window__body">
-      <section class="window__section" aria-label="Popup Bienvenue">
-        <!-- TODO (étape Accueil) : popup "Bienvenue" -->
+      <section class="popup popup--large" aria-label="Popup Bienvenue">
+        <header class="popup__titlebar">
+          <h2 class="popup__title">Bienvenue</h2>
+          <button class="popup__close" type="button" aria-label="Fermer la fenêtre Bienvenue">✕</button>
+        </header>
+        <div class="popup__body">
+          <h3 class="popup__heading">Connexion établie</h3>
+          <p>Consultez les dossiers disponibles, remplissez une demande, ou explorez les archives déjà traitées.</p>
+          <a class="button button--primary" href="dossiers.html">Commencer →</a>
+        </div>
       </section>
 
-      <section class="window__section" aria-label="Popup Comment ça fonctionne">
-        <!-- TODO (étape Accueil) : popup "Comment ça fonctionne" -->
+      <section class="popup popup--medium" aria-label="Popup Comment ça fonctionne">
+        <header class="popup__titlebar">
+          <h2 class="popup__title">Comment ça fonctionne</h2>
+          <button class="popup__close" type="button" aria-label="Fermer la fenêtre Comment ça fonctionne">✕</button>
+        </header>
+        <div class="popup__body">
+          <p>Choisissez un dossier parmi ceux disponibles, remplissez une courte demande avec vos préférences, puis consultez l'état de votre dossier dans les archives. Chaque étape est traitée dans l'ordre où elle est reçue.</p>
+        </div>
       </section>
 
-      <section class="window__section" aria-label="Popup À savoir">
-        <!-- TODO (étape Accueil) : popup "À savoir" -->
+      <section class="popup popup--small" aria-label="Popup À savoir">
+        <header class="popup__titlebar">
+          <h2 class="popup__title">À savoir</h2>
+          <button class="popup__close" type="button" aria-label="Fermer la fenêtre À savoir">✕</button>
+        </header>
+        <div class="popup__body">
+          <p>Certains dossiers peuvent être temporairement indisponibles ou corrompus. Consultez la page Dossiers pour la liste complète.</p>
+        </div>
       </section>
     </main>
 
     <footer class="window__statusbar">
-      <!-- TODO (étape barre de statut) : statut + heure -->
+      <span>statut: en ligne</span>
     </footer>
   </div>
 
