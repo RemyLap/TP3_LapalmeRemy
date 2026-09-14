@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   TP3 - Demande de phénomène paranormal
+   Thème Windows 95 / écran CRT
+   Méthodologie BEM : bloc__element--modificateur
+   ========================================================================== */
+
+:root {
+  --win95-blue-dark: #0a246a;
+  --win95-blue-light: #3a6ea5;
+  --win95-grey-light: #ece9d8;
+  --win95-grey-mid: #c0c0c0;
+  --win95-grey-dark: #808080;
+  --win95-grey-shadow: #404040;
+  --win95-orange: #ff8c00;
+  --win95-red: #c0392b;
+  --win95-yellow-folder: #f5c518;
+}
+
+/* Layers remplis au fil des prochaines étapes (fenêtre, popups, grille de
+   dossiers, formulaire, corbeille, barre de statut, animations). */

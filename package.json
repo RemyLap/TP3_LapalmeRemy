@@ -1,0 +1,27 @@
+{
+  "name": "tp3_lapalmeremy",
+  "version": "1.0.0",
+  "description": "Site fictif de demande de phénomène paranormal - thème Windows 95 / écran CRT",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/output.css --minify",
+    "watch:css": "tailwindcss -i ./css/input.css -o ./css/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RemyLap/TP3_LapalmeRemy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/RemyLap/TP3_LapalmeRemy/issues"
+  },
+  "homepage": "https://github.com/RemyLap/TP3_LapalmeRemy#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

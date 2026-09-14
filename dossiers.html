@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mes Dossiers — Demande de phénomène paranormal</title>
+  <meta name="description" content="Liste des dossiers de phénomènes paranormaux disponibles : consultez leur statut et leur stabilité.">
+  <meta name="theme-color" content="#0a246a">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="css/output.css">
+</head>
+<body class="page page--dossiers">
+
+  <div class="window">
+    <header class="window__titlebar">
+      <h1 class="window__title">Mes Dossiers</h1>
+      <div class="window__controls">
+        <button class="window__control window__control--minimize" type="button" aria-label="Réduire"></button>
+        <button class="window__control window__control--maximize" type="button" aria-label="Agrandir"></button>
+        <button class="window__control window__control--close" type="button" aria-label="Fermer"></button>
+      </div>
+    </header>
+
+    <nav class="window__addressbar" aria-label="Navigation principale">
+      <!-- TODO (étape barre d'adresse) : C:\SYSTEM\dossiers\ + liens vers les autres pages -->
+    </nav>
+
+    <main class="window__body">
+      <section class="window__section" aria-label="Fichiers dans ce dossier">
+        <!-- TODO (étape Dossiers) : grille de 12 dossiers (3 rangées de 4) -->
+      </section>
+
+      <section class="window__section" aria-label="Dossier sélectionné">
+        <!-- TODO (étape Dossiers) : icône + description du dossier sélectionné -->
+      </section>
+
+      <section class="window__section" aria-label="Statut du système">
+        <!-- TODO (étape Dossiers) : statistiques + barre d'intégrité -->
+      </section>
+    </main>
+
+    <footer class="window__statusbar">
+      <!-- TODO (étape barre de statut) : nombre d'objets + statut + heure -->
+    </footer>
+  </div>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/dossiers.js" defer></script>
+</body>
+</html>
