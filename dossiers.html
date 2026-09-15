@@ -28,7 +28,7 @@
     </nav>
 
     <main class="window__body window__body--stack">
-      <section class="window__section" aria-label="Fichiers dans ce dossier">
+      <section class="window__section window__section--inset" aria-label="Fichiers dans ce dossier">
         <h2 class="window__section-title">Fichiers dans ce dossier</h2>
         <div class="folder-grid" role="group" aria-label="Liste des dossiers">
           <button type="button" class="folder-grid__item folder-grid__item--corrupted" data-corrupted="true" data-name="Enlèvement" data-file="Enlèvement.sys" data-description="Fichier corrompu. Dernière lecture : coordonnées incohérentes (latitude négative x3)." aria-pressed="false">
@@ -82,7 +82,7 @@
         </div>
       </section>
 
-      <section class="window__section window__section--shaded" aria-label="Dossier sélectionné">
+      <section class="window__section window__section--shaded -mt-4 sm:-mt-6 border border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white" aria-label="Dossier sélectionné">
         <h2 class="window__section-title">Dossier sélectionné</h2>
         <div class="folder-detail">
           <span class="folder-icon folder-icon--large" aria-hidden="true" data-detail="icon"></span>
@@ -99,7 +99,7 @@
         </div>
       </section>
 
-      <section class="window__section window__section--shaded -mt-4 -mb-4 sm:-mb-6" aria-label="Statut du système">
+      <section class="window__section window__section--shaded -mt-4 -mb-4 sm:-mb-6 border border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white" aria-label="Statut du système">
         <h2 class="window__section-title">Statut du système</h2>
         <div class="system-status__stats">
           <div class="system-status__stat">
