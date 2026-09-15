@@ -1,5 +1,4 @@
 const restoreAllButton = document.querySelector("[data-restore-button]");
-const trashHint = document.querySelector("[data-trash-hint]");
 const restoreStatus = document.querySelector("[data-restore-status]");
 const mysteryItem = document.querySelector("[data-mystery-item]");
 const contextMenu = document.querySelector("[data-context-menu]");
@@ -24,7 +23,6 @@ function updateSummary() {
 function revealMysteryFile() {
   mysteryItem.classList.add("trash-list__item--revealed");
   mysteryItem.setAttribute("aria-hidden", "false");
-  trashHint.classList.add("trash-list__hint--revealed");
   restoreAllButton.textContent = "Tout a été restauré";
   restoreAllButton.disabled = true;
 }

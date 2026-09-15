@@ -180,6 +180,10 @@
     background: var(--win95-white-aged);
   }
 
+  .page--corbeille .window__section--inset {
+    height: 400px;
+  }
+
   .window__section--inset::before {
     content: "";
     position: absolute;
@@ -623,18 +627,6 @@
 
   .context-menu__divider {
     @apply my-1 border-t border-black/20;
-  }
-
-  .trash-list__intro {
-    @apply mb-3 text-sm text-gray-600 italic;
-  }
-
-  .trash-list__hint {
-    @apply mt-2 text-xs text-gray-500 italic opacity-0 transition-opacity duration-500 ease-out;
-  }
-
-  .trash-list__hint--revealed {
-    @apply opacity-100;
   }
 
   .trash-summary {
