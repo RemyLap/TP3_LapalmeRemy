@@ -1,34 +1,113 @@
-const restoreButton = document.querySelector("[data-restore-button]");
-const trashList = document.querySelector("[data-trash-list]");
+const restoreAllButton = document.querySelector("[data-restore-button]");
 const trashHint = document.querySelector("[data-trash-hint]");
 const restoreStatus = document.querySelector("[data-restore-status]");
+const mysteryItem = document.querySelector("[data-mystery-item]");
+const contextMenu = document.querySelector("[data-context-menu]");
 const countEl = document.querySelector('[data-summary="count"]');
 const sizeEl = document.querySelector('[data-summary="size"]');
+const statusbarCountEl = document.querySelector("[data-statusbar-count]");
 
-restoreButton.addEventListener("click", () => {
-  const items = document.querySelectorAll("[data-trash-item]");
-  if (items.length === 0) return;
+let activeItem = null;
 
-  restoreButton.disabled = true;
+function pendingItems() {
+  return document.querySelectorAll("[data-trash-item]:not(.trash-list__item--resolved)");
+}
 
-  items.forEach((item) => {
-    item.classList.add("trash-list__item--removing");
-    item.addEventListener("animationend", () => item.remove(), { once: true });
-  });
+function updateSummary() {
+  const items = pendingItems();
+  const totalSize = Array.from(items).reduce((sum, item) => sum + parseFloat(item.dataset.size), 0);
+  countEl.textContent = items.length;
+  sizeEl.textContent = `${totalSize.toFixed(1).replace(".", ",")} Mo`;
+  statusbarCountEl.textContent = `${items.length} objet(s)`;
+}
 
-  countEl.textContent = "0";
-  sizeEl.textContent = "0 Mo";
-  restoreStatus.textContent = "Tous les éléments ont été restaurés.";
+function revealMysteryFile() {
+  mysteryItem.classList.add("trash-list__item--revealed");
+  mysteryItem.setAttribute("aria-hidden", "false");
+  trashHint.classList.add("trash-list__hint--revealed");
+  restoreAllButton.textContent = "Tout a été restauré";
+  restoreAllButton.disabled = true;
+}
 
-  setTimeout(() => {
-    const mystery = document.createElement("li");
-    mystery.className = "trash-list__item trash-list__item--mystery";
-    mystery.innerHTML = `
-      <span class="folder-icon folder-icon--small folder-icon--corrupted" aria-hidden="true"></span>
-      <span class="trash-list__name">fichier_ombre.sys</span>
-    `;
-    trashList.appendChild(mystery);
-    trashHint.hidden = false;
-    restoreButton.textContent = "Tout a été restauré";
-  }, 500);
+function resolveItem(item, message) {
+  if (item.classList.contains("trash-list__item--resolved")) return;
+
+  item.classList.add("trash-list__item--restoring");
+  item.addEventListener(
+    "animationend",
+    () => {
+      item.classList.remove("trash-list__item--restoring");
+      item.classList.add("trash-list__item--resolved");
+      item.disabled = true;
+
+      updateSummary();
+
+      if (pendingItems().length === 0) {
+        restoreStatus.textContent = "Tous les éléments ont été traités.";
+        revealMysteryFile();
+      } else {
+        restoreStatus.textContent = message;
+      }
+    },
+    { once: true }
+  );
+}
+
+function restoreItem(item) {
+  resolveItem(item, "Élément restauré.");
+}
+
+function deleteItem(item) {
+  resolveItem(item, "Élément supprimé définitivement.");
+}
+
+function openMenu(item, trigger) {
+  activeItem = item;
+  const rect = trigger.getBoundingClientRect();
+  contextMenu.style.top = `${rect.bottom}px`;
+  contextMenu.style.left = `${rect.left}px`;
+  contextMenu.hidden = false;
+  contextMenu.querySelector('[data-menu-action="restore"]').focus();
+}
+
+function closeMenu() {
+  contextMenu.hidden = true;
+  activeItem = null;
+}
+
+document.querySelector("[data-trash-list]").addEventListener("click", (event) => {
+  const trigger = event.target.closest("[data-trash-trigger]");
+  if (!trigger) return;
+  const item = trigger.closest("[data-trash-item]");
+  if (!item || item.classList.contains("trash-list__item--resolved")) return;
+  openMenu(item, trigger);
+});
+
+contextMenu.querySelectorAll("[data-menu-action]").forEach((item) => {
+  item.addEventListener("mouseenter", () => item.focus());
+});
+
+contextMenu.addEventListener("click", (event) => {
+  const action = event.target.closest("[data-menu-action]");
+  if (!action || !activeItem) return;
+  if (action.dataset.menuAction === "restore") {
+    restoreItem(activeItem);
+  } else if (action.dataset.menuAction === "delete") {
+    deleteItem(activeItem);
+  }
+  closeMenu();
+});
+
+document.addEventListener("click", (event) => {
+  if (contextMenu.hidden) return;
+  if (contextMenu.contains(event.target) || event.target.closest("[data-trash-item]")) return;
+  closeMenu();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !contextMenu.hidden) closeMenu();
+});
+
+restoreAllButton.addEventListener("click", () => {
+  pendingItems().forEach(restoreItem);
 });

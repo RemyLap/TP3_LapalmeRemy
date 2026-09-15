@@ -361,27 +361,60 @@
 
   .trash-list__item {
     @apply flex items-center gap-3 border-b border-black/10 py-2 last:border-b-0;
-    animation: trash-item-in 0.3s ease-out both;
-  }
-
-  .trash-list__item--removing {
-    animation: trash-item-out 0.3s ease-in forwards;
-  }
-
-  .trash-list__item--mystery {
-    animation: trash-item-in 0.4s ease-out both;
   }
 
   .trash-list__name {
-    @apply text-sm text-gray-700 line-through decoration-gray-500;
+    @apply cursor-pointer border-0 bg-transparent p-0 text-sm text-gray-700 line-through decoration-gray-500 hover:text-[var(--win95-blue-dark)] hover:decoration-[var(--win95-blue-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--win95-blue-dark)];
+  }
+
+  .trash-list__item--restoring {
+    animation: trash-item-flash 0.5s ease-out;
+  }
+
+  .trash-list__item--resolved {
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      opacity 0.3s ease,
+      visibility 0s linear 0.3s;
+  }
+
+  .trash-list__item--mystery {
+    @apply invisible opacity-0 transition-opacity duration-500 ease-out;
+  }
+
+  .trash-list__item--mystery.trash-list__item--revealed {
+    @apply visible opacity-100;
   }
 
   .trash-list__item--mystery .trash-list__name {
     @apply font-semibold text-[var(--win95-red)] no-underline;
   }
 
+  .context-menu {
+    @apply fixed z-50 min-w-[11rem] border border-[var(--win95-grey-shadow)] py-1 shadow-lg;
+    background: linear-gradient(135deg, #f4f3ee 0%, var(--win95-grey-light) 50%, #d8d5c8 100%);
+  }
+
+  .context-menu__item {
+    @apply block w-full cursor-pointer border-0 bg-transparent px-4 py-1.5 text-left text-xs text-gray-900;
+  }
+
+  .context-menu__item:hover,
+  .context-menu__item:focus-visible {
+    @apply bg-[var(--win95-blue-dark)] text-white outline-none;
+  }
+
+  .context-menu__divider {
+    @apply my-1 border-t border-black/20;
+  }
+
   .trash-list__hint {
-    @apply mt-2 text-xs text-gray-500 italic;
+    @apply mt-2 text-xs text-gray-500 italic opacity-0 transition-opacity duration-500 ease-out;
+  }
+
+  .trash-list__hint--revealed {
+    @apply opacity-100;
   }
 
   .trash-summary {
@@ -397,31 +430,24 @@
   }
 
   .trash-action__status {
-    @apply mt-2 text-sm text-gray-700;
+    @apply mt-2 min-h-5 text-sm text-gray-700;
   }
 }
 
-@keyframes trash-item-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
+@keyframes trash-item-flash {
+  0% {
+    background-color: transparent;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  30% {
+    background-color: color-mix(in srgb, var(--win95-blue-light) 25%, transparent);
   }
-}
-
-@keyframes trash-item-out {
-  to {
-    opacity: 0;
-    transform: translateX(12px);
+  100% {
+    background-color: transparent;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .trash-list__item,
-  .trash-list__item--mystery {
+  .trash-list__item--restoring {
     animation: none;
   }
 }
