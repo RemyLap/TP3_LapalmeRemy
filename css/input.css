@@ -140,7 +140,7 @@
   }
 
   .window__addressbar {
-    @apply flex items-center gap-2 border-b border-[var(--win95-grey-shadow)] px-3 py-2 text-sm;
+    @apply flex items-center gap-2 px-4 py-2 text-sm;
     background: var(--win95-grey-mid);
   }
 
@@ -185,7 +185,7 @@
     position: absolute;
     inset: 0;
     border: 2px solid;
-    border-color: white var(--win95-grey-shadow) var(--win95-grey-shadow) white;
+    border-color: var(--win95-grey-shadow) white white var(--win95-grey-shadow);
     pointer-events: none;
   }
 
