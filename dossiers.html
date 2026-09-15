@@ -27,7 +27,7 @@
       <div class="window__address-value"><span class="window__address-root">C:\SYSTEM\</span><a href="index.html" class="window__address-segment">accueil\</a><a href="dossiers.html" class="window__address-segment window__address-segment--current" aria-current="page">dossiers\</a><a href="corbeille.html" class="window__address-segment window__address-segment--upcoming">corbeille\</a></div>
     </nav>
 
-    <main class="window__body">
+    <main class="window__body window__body--stack">
       <section class="window__section" aria-label="Fichiers dans ce dossier">
         <h2 class="window__section-title">Fichiers dans ce dossier</h2>
         <div class="folder-grid" role="group" aria-label="Liste des dossiers">
@@ -82,7 +82,7 @@
         </div>
       </section>
 
-      <section class="window__section" aria-label="Dossier sélectionné">
+      <section class="window__section window__section--shaded" aria-label="Dossier sélectionné">
         <h2 class="window__section-title">Dossier sélectionné</h2>
         <div class="folder-detail">
           <span class="folder-icon folder-icon--large" aria-hidden="true" data-detail="icon"></span>
@@ -94,12 +94,12 @@
               <span data-detail="stability">stabilité 88%</span>
               <span class="folder-detail__meta-item--warning" data-detail="reversibility">réversibilité : partielle</span>
             </p>
-            <a class="button button--primary folder-detail__action" data-detail="action" href="demande.html?type=Possession">Faire une demande →</a>
+            <a class="button button--secondary folder-detail__action" data-detail="action" href="demande.html?type=Possession">Faire une demande</a>
           </div>
         </div>
       </section>
 
-      <section class="window__section" aria-label="Statut du système">
+      <section class="window__section window__section--shaded -mt-4 -mb-4 sm:-mb-6" aria-label="Statut du système">
         <h2 class="window__section-title">Statut du système</h2>
         <div class="system-status__stats">
           <div class="system-status__stat">
