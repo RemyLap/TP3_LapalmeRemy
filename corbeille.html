@@ -27,8 +27,8 @@
       <div class="window__address-value"><span class="window__address-root">C:\SYSTEM\</span><a href="index.html" class="window__address-segment">accueil\</a><a href="dossiers.html" class="window__address-segment">dossiers\</a><a href="corbeille.html" class="window__address-segment window__address-segment--current" aria-current="page">corbeille\</a></div>
     </nav>
 
-    <main class="window__body">
-      <section class="window__section" aria-label="Contenu">
+    <main class="window__body window__body--stack">
+      <section class="window__section window__section--inset" aria-label="Contenu">
         <h2 class="window__section-title">Contenu</h2>
         <ul class="trash-list" data-trash-list>
           <li class="trash-list__item" data-trash-item data-size="5.1">
@@ -60,17 +60,20 @@
         </div>
       </section>
 
-      <section class="window__section" aria-label="Résumé">
+      <section class="window__section window__section--shaded -mt-4 border border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white" aria-label="Résumé">
         <h2 class="window__section-title">Résumé</h2>
         <div class="trash-summary">
           <p class="trash-summary__stat"><span class="trash-summary__label">Éléments :</span> <span data-summary="count">4</span></p>
           <p class="trash-summary__stat"><span class="trash-summary__label">Espace occupé :</span> <span data-summary="size">12,4 Mo</span></p>
+          <p class="trash-summary__stat"><span class="trash-summary__label">Dernière purge :</span> jamais</p>
         </div>
+        <p class="trash-summary__note">Le système ne supprime rien de façon permanente sans confirmation. En théorie.</p>
       </section>
 
-      <section class="window__section" aria-label="Action">
+      <section class="window__section window__section--shaded -mt-4 -mb-4 sm:-mb-6 border border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white" aria-label="Action">
         <h2 class="window__section-title">Action</h2>
         <button type="button" class="button button--secondary" data-restore-button>Restaurer tout</button>
+        <p class="trash-action__warning">La restauration est irréversible. Ou réversible. Le système n'est plus certain.</p>
         <p class="trash-action__status" data-restore-status aria-live="polite"></p>
       </section>
     </main>

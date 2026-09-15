@@ -175,7 +175,7 @@
   }
 
   .window__section--inset {
-    @apply relative -mx-4 -mt-4 border-[16px] px-4 pt-2 sm:-mx-6 sm:-mt-6 sm:px-6 sm:pt-3;
+    @apply relative -mx-4 -mt-4 h-[392px] overflow-y-auto border-[16px] px-4 pt-2 sm:-mx-6 sm:-mt-6 sm:px-6 sm:pt-3;
     border-color: var(--win95-grey-mid);
     background: var(--win95-white-aged);
   }
@@ -608,6 +608,10 @@
     @apply my-1 border-t border-black/20;
   }
 
+  .trash-list__intro {
+    @apply mb-3 text-sm text-gray-600 italic;
+  }
+
   .trash-list__hint {
     @apply mt-2 text-xs text-gray-500 italic opacity-0 transition-opacity duration-500 ease-out;
   }
@@ -626,6 +630,14 @@
 
   .trash-summary__label {
     @apply text-gray-600;
+  }
+
+  .trash-summary__note {
+    @apply mt-2 text-xs text-gray-500 italic;
+  }
+
+  .trash-action__warning {
+    @apply mt-2 text-xs text-gray-500 italic;
   }
 
   .trash-action__status {
