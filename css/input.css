@@ -158,11 +158,11 @@
   }
 
   .window__address-segment {
-    @apply text-gray-700 no-underline hover:underline;
+    @apply text-gray-700 no-underline transition-colors duration-100 hover:bg-[var(--win95-blue-dark)] hover:text-white;
   }
 
   .window__address-segment--current {
-    @apply font-bold text-gray-900 no-underline hover:no-underline;
+    @apply font-bold text-gray-900 no-underline;
   }
 
   .window__address-segment--upcoming {
