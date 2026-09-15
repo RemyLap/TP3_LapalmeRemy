@@ -460,11 +460,15 @@
 
 @layer components {
   .folder-detail {
-    @apply flex items-start gap-4;
+    @apply mt-3 space-y-1 pl-4;
+  }
+
+  .folder-detail__header {
+    @apply flex items-center gap-2;
   }
 
   .folder-detail__body {
-    @apply min-w-0 flex-1 space-y-1;
+    @apply min-w-0 space-y-1;
   }
 
   .folder-detail__name {
@@ -520,7 +524,7 @@
   }
 
   .system-status__progress {
-    @apply mt-3 space-y-1;
+    @apply mt-3 space-y-1 pl-4;
   }
 
   .system-status__progress-label {
