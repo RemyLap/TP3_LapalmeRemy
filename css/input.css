@@ -213,6 +213,12 @@
   .popup--closing {
     animation: popup-out 0.2s ease-in forwards;
   }
+
+  .popup--closed {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 @keyframes popup-in {

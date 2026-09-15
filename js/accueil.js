@@ -3,6 +3,13 @@ document.querySelectorAll(".popup__close").forEach((button) => {
     const popup = button.closest(".popup");
     if (!popup) return;
     popup.classList.add("popup--closing");
-    popup.addEventListener("animationend", () => popup.remove(), { once: true });
+    popup.addEventListener(
+      "animationend",
+      () => {
+        popup.classList.remove("popup--closing");
+        popup.classList.add("popup--closed");
+      },
+      { once: true }
+    );
   });
 });
