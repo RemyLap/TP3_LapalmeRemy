@@ -12,6 +12,92 @@
 </head>
 <body class="page page--demande">
 
+  <div class="modal-backdrop" aria-hidden="true" inert>
+    <div class="window">
+      <header class="window__titlebar">
+        <h1 class="window__title">Mes Dossiers</h1>
+        <div class="window__controls">
+          <span class="window__control"></span>
+          <span class="window__control"></span>
+          <span class="window__control"></span>
+        </div>
+      </header>
+
+      <nav class="window__addressbar">
+        <span class="window__address-label">Adresse:</span>
+        <div class="window__address-value"><span class="window__address-root">C:\SYSTEM\</span><span class="window__address-segment">accueil\</span><span class="window__address-segment window__address-segment--current">dossiers\</span><span class="window__address-segment window__address-segment--upcoming">corbeille\</span></div>
+      </nav>
+
+      <main class="window__body">
+        <section class="window__section">
+          <h2 class="window__section-title">Fichiers dans ce dossier</h2>
+          <div class="folder-grid">
+            <div class="folder-grid__item folder-grid__item--corrupted"><span class="folder-icon folder-icon--corrupted"></span><span class="folder-grid__label">Enlèvement</span></div>
+            <div class="folder-grid__item folder-grid__item--selected"><span class="folder-icon"></span><span class="folder-grid__label">Possession</span></div>
+            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Téléport</span></div>
+            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Contact</span></div>
+            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Régression</span></div>
+            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Double</span></div>
+            <div class="folder-grid__item folder-grid__item--corrupted"><span class="folder-icon folder-icon--corrupted"></span><span class="folder-grid__label">????</span></div>
+            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Invasion</span></div>
+            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Résurrection</span></div>
+            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Vision</span></div>
+            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Amnésie</span></div>
+            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Archives</span></div>
+          </div>
+        </section>
+
+        <section class="window__section">
+          <h2 class="window__section-title">Dossier sélectionné</h2>
+          <div class="folder-detail">
+            <span class="folder-icon folder-icon--large"></span>
+            <div class="folder-detail__body">
+              <p class="folder-detail__name">Possession.sys</p>
+              <p class="folder-detail__description">Occupation temporaire du corps. Durée moyenne : 6 à 48h. Effets secondaires possibles : voix modifiée, attirance pour le sel de mer.</p>
+              <p class="folder-detail__meta">
+                <span>312 cas archivés</span>
+                <span>stabilité 88%</span>
+                <span class="folder-detail__meta-item--warning">réversibilité : partielle</span>
+              </p>
+              <span class="button button--primary folder-detail__action">Faire une demande →</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="window__section">
+          <h2 class="window__section-title">Statut du système</h2>
+          <div class="system-status__stats">
+            <div class="system-status__stat">
+              <span class="system-status__stat-value">12</span>
+              <span class="system-status__stat-label">dossiers</span>
+            </div>
+            <div class="system-status__stat">
+              <span class="system-status__stat-value">2</span>
+              <span class="system-status__stat-label">corrompus</span>
+            </div>
+            <div class="system-status__stat">
+              <span class="system-status__stat-value">61%</span>
+              <span class="system-status__stat-label">stabilité</span>
+            </div>
+          </div>
+          <div class="system-status__progress">
+            <p class="system-status__progress-label"><span>Intégrité du système</span><span>61%</span></p>
+            <div class="system-status__progress-track">
+              <div class="system-status__progress-fill" style="width: 61%"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="window__statusbar">
+        <span>12 objet(s)</span>
+        <span>statut: en ligne</span>
+      </footer>
+    </div>
+  </div>
+
+  <div class="modal-scrim" aria-hidden="true"></div>
+
   <div class="dialog">
     <header class="dialog__titlebar">
       <h1 class="dialog__title">Propriétés — Demande XR-119</h1>
@@ -23,27 +109,180 @@
     </header>
 
     <nav class="dialog__tabs" aria-label="Onglets du formulaire">
-      <!-- TODO (étape Demande) : onglets Général (actif) / Avancé -->
+      <button type="button" class="dialog__tab dialog__tab--active" data-tab-button="general" aria-selected="true" role="tab">Général</button>
+      <button type="button" class="dialog__tab" data-tab-button="avance" aria-selected="false" role="tab">Avancé</button>
     </nav>
 
     <main class="dialog__body">
-      <form class="form" id="form-demande" novalidate>
-        <section class="form__section" aria-label="Identité">
-          <!-- TODO (étape Demande) : Nom, Âge, Genre, Ville -->
-        </section>
+      <div data-tab-panel="general">
+        <form class="form" id="form-demande" novalidate>
+          <fieldset class="form__section">
+            <legend class="form__section-title">Identité</legend>
+            <div class="form__section-inner">
 
-        <section class="form__section" aria-label="Préférences de l'expérience">
-          <!-- TODO (étape Demande) : Type, Date, Créneau, Courage -->
-        </section>
+            <div class="form__row">
+              <label class="form__label" for="field-nom">Nom</label>
+              <div class="form__control-wrap">
+                <input class="form__input" type="text" id="field-nom" name="nom" autocomplete="name">
+                <p class="form__error" data-error-for="nom" hidden></p>
+              </div>
+            </div>
 
-        <section class="form__section" aria-label="Contact et confirmation">
-          <!-- TODO (étape Demande) : Peur, Apporter, Urgence, Signature, conditions -->
-        </section>
-      </form>
+            <div class="form__row">
+              <label class="form__label" for="field-age">Âge</label>
+              <div class="form__control-wrap">
+                <input class="form__input" type="text" id="field-age" name="age" inputmode="numeric" placeholder="18">
+                <p class="form__error" data-error-for="age" hidden></p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <span class="form__label" id="label-genre">Genre</span>
+              <div class="form__control-wrap">
+                <div class="form__choice-group" role="radiogroup" aria-labelledby="label-genre">
+                  <label class="form__choice"><input type="radio" name="genre" value="Homme"> Homme</label>
+                  <label class="form__choice"><input type="radio" name="genre" value="Femme"> Femme</label>
+                  <label class="form__choice"><input type="radio" name="genre" value="Autre"> Autre</label>
+                </div>
+                <p class="form__error" data-error-for="genre" hidden></p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <label class="form__label" for="field-ville">Ville</label>
+              <div class="form__control-wrap">
+                <input class="form__input" type="text" id="field-ville" name="ville" placeholder="ex. Saint-Liboire" autocomplete="address-level2">
+                <p class="form__error" data-error-for="ville" hidden></p>
+              </div>
+            </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form__section">
+            <legend class="form__section-title">Préférences de l'expérience</legend>
+            <div class="form__section-inner">
+
+            <div class="form__row">
+              <label class="form__label" for="field-type">Type</label>
+              <div class="form__control-wrap">
+                <select class="form__input" id="field-type" name="type">
+                  <option value="">— Choisir un dossier —</option>
+                  <option value="Possession">Possession</option>
+                  <option value="Téléport">Téléport</option>
+                  <option value="Contact">Contact</option>
+                  <option value="Régression">Régression</option>
+                  <option value="Double">Double</option>
+                  <option value="Invasion">Invasion</option>
+                  <option value="Résurrection">Résurrection</option>
+                  <option value="Vision">Vision</option>
+                  <option value="Amnésie">Amnésie</option>
+                </select>
+                <p class="form__hint">Certains effets sont irréversibles. Voir la documentation… si elle existait.</p>
+                <p class="form__error" data-error-for="type" hidden></p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <label class="form__label" for="field-date">Date</label>
+              <div class="form__control-wrap">
+                <input class="form__input" type="date" id="field-date" name="date">
+                <p class="form__error" data-error-for="date" hidden></p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <span class="form__label" id="label-creneau">Créneau</span>
+              <div class="form__control-wrap">
+                <div class="form__choice-group" role="radiogroup" aria-labelledby="label-creneau">
+                  <label class="form__choice"><input type="radio" name="creneau" value="Soir"> Soir</label>
+                  <label class="form__choice"><input type="radio" name="creneau" value="Nuit"> Nuit</label>
+                  <label class="form__choice"><input type="radio" name="creneau" value="Aube"> Aube</label>
+                </div>
+                <p class="form__error" data-error-for="creneau" hidden></p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <label class="form__label" for="field-courage">Courage</label>
+              <div class="form__control-wrap">
+                <div class="form__range-row">
+                  <input class="form__range" type="range" id="field-courage" name="courage" min="1" max="10" value="5" data-courage-input>
+                  <output class="form__range-value" for="field-courage" data-courage-value>5</output>
+                </div>
+                <p class="form__hint">Un courage trop élevé peut attirer l'attention indésirable du dossier.</p>
+              </div>
+            </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form__section">
+            <legend class="form__section-title">Contact et confirmation</legend>
+            <div class="form__section-inner">
+
+            <div class="form__row">
+              <label class="form__label" for="field-peur">Peur</label>
+              <div class="form__control-wrap">
+                <input class="form__input" type="text" id="field-peur" name="peur" placeholder="Décrivez brièvement…">
+                <p class="form__hint">Soyez honnête, le formulaire ne juge pas (beaucoup).</p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <span class="form__label" id="label-apporter">Apporter</span>
+              <div class="form__control-wrap">
+                <div class="form__choice-group">
+                  <label class="form__choice"><input type="checkbox" name="apporter" value="Objet personnel" data-apporter-option> Objet personnel</label>
+                  <label class="form__choice"><input type="checkbox" name="apporter" value="Photo" data-apporter-option> Photo</label>
+                  <label class="form__choice"><input type="checkbox" name="apporter" value="Rien" data-apporter-rien> Rien</label>
+                </div>
+                <p class="form__hint">Le sel de mer n'est pas fourni.</p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <label class="form__label" for="field-urgence">Urgence</label>
+              <div class="form__control-wrap">
+                <input class="form__input" type="text" id="field-urgence" name="urgence" placeholder="Nom et numéro">
+              </div>
+            </div>
+
+            <div class="form__row">
+              <label class="form__label" for="field-signature">Signature</label>
+              <div class="form__control-wrap">
+                <input class="form__input" type="text" id="field-signature" name="signature" placeholder="Tapez votre nom complet">
+                <p class="form__error" data-error-for="signature" hidden></p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <span class="form__label"></span>
+              <div class="form__control-wrap">
+                <label class="form__choice">
+                  <input type="checkbox" id="field-accept" name="accept">
+                  J'accepte les conditions de traitement
+                </label>
+                <p class="form__error" data-error-for="accept" hidden></p>
+              </div>
+            </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <div data-tab-panel="avance" hidden>
+        <p class="form__hint">Aucun paramètre avancé pour l'instant. Revenez plus tard.</p>
+      </div>
+
+      <div class="form-success" data-form-success hidden>
+        <h2 class="form-success__title">Demande XR-119 soumise</h2>
+        <p>Votre demande a été enregistrée. Un agent vous contactera… ou pas.</p>
+        <a class="button button--primary" href="dossiers.html">Retour aux dossiers</a>
+      </div>
     </main>
 
     <footer class="dialog__actions">
-      <!-- TODO (étape Demande) : boutons Annuler / OK -->
+      <a class="button button--secondary" href="dossiers.html">Annuler</a>
+      <button class="button button--primary" type="submit" form="form-demande" data-submit-button>OK</button>
     </footer>
   </div>
 

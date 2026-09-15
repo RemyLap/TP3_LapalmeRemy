@@ -26,6 +26,68 @@
   body {
     @apply flex min-h-screen items-center justify-center bg-[var(--win95-grey-dark)] p-2 sm:p-4;
   }
+
+  ::selection {
+    background: var(--win95-blue-dark);
+    color: white;
+  }
+
+  input[type="range"] {
+    accent-color: var(--win95-blue-dark);
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    display: inline-grid;
+    place-content: center;
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    flex-shrink: 0;
+    appearance: none;
+    border: 2px solid;
+    border-color: var(--win95-grey-shadow) white white var(--win95-grey-shadow);
+    background: white;
+  }
+
+  input[type="radio"] {
+    border-radius: 50%;
+  }
+
+  input[type="radio"]::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--win95-blue-dark);
+    transform: scale(0);
+    transition: transform 0.08s ease-out;
+  }
+
+  input[type="radio"]:checked::before {
+    transform: scale(1);
+  }
+
+  input[type="checkbox"]::before {
+    content: "";
+    width: 4px;
+    height: 8px;
+    border-style: solid;
+    border-color: var(--win95-blue-dark);
+    border-width: 0 3.5px 3.5px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.08s ease-out;
+  }
+
+  input[type="checkbox"]:checked::before {
+    transform: rotate(45deg) scale(1);
+  }
+
+  input[type="radio"]:focus-visible,
+  input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--win95-blue-dark);
+    outline-offset: 2px;
+  }
 }
 
 @layer components {
@@ -449,5 +511,189 @@
 @media (prefers-reduced-motion: reduce) {
   .trash-list__item--restoring {
     animation: none;
+  }
+}
+
+/* ==========================================================================
+   Dialogue de propriétés (bloc .dialog) - page Demande
+   ========================================================================== */
+
+@layer components {
+  .modal-backdrop {
+    @apply pointer-events-none fixed inset-0 z-0 flex items-center justify-center overflow-hidden p-2 sm:p-4;
+    filter: brightness(0.92) saturate(0.85);
+  }
+
+  .modal-backdrop .window {
+    @apply max-h-full;
+  }
+
+  .modal-scrim {
+    @apply fixed inset-0 z-10 bg-black/35;
+  }
+
+  .dialog {
+    @apply relative z-20 mx-auto flex max-h-[94vh] w-full max-w-2xl flex-col border border-[var(--win95-grey-shadow)] shadow-lg;
+    background: var(--win95-grey-mid);
+  }
+
+  .dialog__tabs {
+    @apply flex gap-1 px-2 pt-2;
+    background: var(--win95-grey-mid);
+  }
+
+  .dialog__tab {
+    @apply cursor-pointer border border-b-0 border-t-white border-l-white border-r-[var(--win95-grey-shadow)] bg-[var(--win95-grey-mid)] px-4 py-1.5 text-sm text-black;
+  }
+
+  .dialog__tab--active {
+    @apply relative top-px z-10 font-bold;
+    background: var(--win95-grey-mid);
+  }
+
+  .dialog__body {
+    @apply min-h-0 flex-1 overflow-y-auto border-t border-[var(--win95-grey-shadow)] p-4 sm:p-6;
+    background: var(--win95-grey-mid);
+  }
+
+  .dialog__actions {
+    @apply flex justify-end gap-2 border-t border-white px-4 py-3;
+    background: var(--win95-grey-mid);
+  }
+}
+
+/* ==========================================================================
+   Formulaire de demande (bloc .form)
+   ========================================================================== */
+
+@layer components {
+  .form__section {
+    @apply m-0 min-w-0 px-3 pt-2 pb-3;
+    border: 3px groove #ddd;
+    background-color: var(--win95-grey-mid);
+  }
+
+  .form__section + .form__section {
+    @apply mt-4;
+  }
+
+  .form__section-inner {
+    @apply min-w-0 space-y-3;
+  }
+
+  .form__section-title {
+    @apply px-1 text-sm font-bold text-black;
+    background-color: var(--win95-grey-mid);
+  }
+
+  .form__row {
+    @apply grid grid-cols-12 items-start gap-x-4 gap-y-1;
+  }
+
+  .form__label {
+    @apply col-span-12 pt-1 text-sm font-bold text-black sm:col-span-4;
+  }
+
+  .form__control-wrap {
+    @apply col-span-12 space-y-1 sm:col-span-8;
+  }
+
+  .form__input {
+    @apply w-full border-2 bg-white px-2 py-1 text-sm text-black outline-none;
+    border-color: var(--win95-grey-shadow) white white var(--win95-grey-shadow);
+  }
+
+  .form__input:focus-visible {
+    outline: 1px solid var(--win95-blue-dark);
+    outline-offset: -3px;
+  }
+
+  .form__input--invalid {
+    @apply border-[var(--win95-red)] outline-none;
+  }
+
+  .form__choice-group {
+    @apply flex flex-wrap gap-x-4 gap-y-2;
+  }
+
+  .form__choice {
+    @apply flex items-center gap-1.5 text-sm text-gray-800;
+  }
+
+  .form__range-row {
+    @apply flex items-center gap-3;
+  }
+
+  .form__range {
+    @apply flex-1 cursor-pointer appearance-none bg-transparent;
+    height: 20px;
+  }
+
+  .form__range::-webkit-slider-runnable-track {
+    height: 2px;
+    background: var(--win95-grey-shadow);
+    border-bottom: 1px solid white;
+  }
+
+  .form__range::-moz-range-track {
+    height: 2px;
+    background: var(--win95-grey-shadow);
+    border-bottom: 1px solid white;
+  }
+
+  .form__range::-webkit-slider-thumb {
+    @apply appearance-none cursor-pointer;
+    width: 11px;
+    height: 20px;
+    margin-top: -9px;
+    background: var(--win95-grey-mid);
+    border: 2px solid;
+    border-color: white var(--win95-grey-shadow) var(--win95-grey-shadow) white;
+  }
+
+  .form__range::-moz-range-thumb {
+    @apply cursor-pointer rounded-none;
+    width: 11px;
+    height: 20px;
+    background: var(--win95-grey-mid);
+    border: 2px solid;
+    border-color: white var(--win95-grey-shadow) var(--win95-grey-shadow) white;
+  }
+
+  .form__range-value {
+    @apply w-6 text-center text-sm font-semibold text-gray-900;
+  }
+
+  .form__hint {
+    @apply text-xs text-gray-500 italic;
+  }
+
+  .form__error {
+    @apply text-xs font-semibold text-[var(--win95-red)];
+  }
+}
+
+/* ==========================================================================
+   Confirmation d'envoi (bloc .form-success)
+   ========================================================================== */
+
+@layer components {
+  .form-success {
+    @apply space-y-3 text-sm text-gray-800;
+  }
+
+  .form-success__title {
+    @apply text-lg font-bold text-gray-900;
+  }
+}
+
+/* ==========================================================================
+   Bouton secondaire (Annuler)
+   ========================================================================== */
+
+@layer components {
+  .button--secondary {
+    @apply border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white text-gray-900 hover:brightness-105;
+    background: var(--win95-grey-mid);
   }
 }
