@@ -175,9 +175,18 @@
   }
 
   .window__section--inset {
-    @apply -mx-4 -mt-4 border-t-2 border-r-2 border-l-2 px-4 pt-4 sm:-mx-6 sm:-mt-6 sm:px-6 sm:pt-6;
-    border-color: var(--win95-grey-shadow) white transparent var(--win95-grey-shadow);
+    @apply relative -mx-4 -mt-4 border-[16px] px-4 pt-2 sm:-mx-6 sm:-mt-6 sm:px-6 sm:pt-3;
+    border-color: var(--win95-grey-mid);
     background: var(--win95-white-aged);
+  }
+
+  .window__section--inset::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid;
+    border-color: white var(--win95-grey-shadow) var(--win95-grey-shadow) white;
+    pointer-events: none;
   }
 
   .window__body--stack {
@@ -406,7 +415,7 @@
   }
 
   .folder-grid {
-    @apply grid grid-cols-2 gap-x-3 gap-y-9 sm:grid-cols-3 md:grid-cols-4;
+    @apply mt-8 grid grid-cols-2 gap-x-3 gap-y-7 sm:grid-cols-3 md:grid-cols-4;
   }
 
   .folder-grid__entry {
@@ -499,7 +508,7 @@
   }
 
   .system-status__stat {
-    @apply border border-[var(--win95-grey-shadow)] bg-[var(--win95-white-aged)] p-3 text-center;
+    @apply text-center;
   }
 
   .system-status__stat-value {
