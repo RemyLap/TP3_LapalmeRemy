@@ -6,6 +6,19 @@
    Méthodologie BEM : bloc__element--modificateur
    ========================================================================== */
 
+/* Police Windows 95 (recréation libre de MS Sans Serif, licence SIL OFL) -
+   voir assets/fonts/W95FA-LICENSE.txt. Auto-hébergée pour un rendu identique
+   chez tous les visiteurs, peu importe leur OS/navigateur. */
+@font-face {
+  font-family: "W95FA";
+  src:
+    url("../assets/fonts/w95fa.woff2") format("woff2"),
+    url("../assets/fonts/w95fa.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --win95-blue-dark: #1a14c3;
   --win95-blue-light: #3a6ea5;
@@ -26,7 +39,7 @@
 @layer base {
   body {
     @apply flex min-h-screen items-center justify-center bg-[var(--win95-grey-dark)] p-2 sm:p-4;
-    font-family: "MS Sans Serif", "Pixelated MS Sans Serif", Tahoma, Geneva, Arial, sans-serif;
+    font-family: "W95FA", "MS Sans Serif", Tahoma, Geneva, Arial, sans-serif;
   }
 
   ::selection {

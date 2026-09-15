@@ -1,4 +1,4 @@
-const CACHE_NAME = "tp3-system-v26";
+const CACHE_NAME = "tp3-system-v27";
 
 const PRECACHE_URLS = [
   "index.html",
@@ -15,6 +15,8 @@ const PRECACHE_URLS = [
   "assets/icons/icon-144.png",
   "assets/icons/icon-192.png",
   "assets/icons/icon-512.png",
+  "assets/fonts/w95fa.woff2",
+  "assets/fonts/w95fa.woff",
 ];
 
 // Enregistre une réponse "propre" (flag redirected remis à zéro) dans le
