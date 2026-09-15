@@ -166,7 +166,7 @@
   }
 
   .window__address-segment--upcoming {
-    @apply text-gray-400;
+    @apply text-gray-700;
   }
 
   .window__body {

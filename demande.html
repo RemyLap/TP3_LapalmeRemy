@@ -123,36 +123,36 @@
             <div class="form__row">
               <label class="form__label" for="field-nom">Nom</label>
               <div class="form__control-wrap">
-                <input class="form__input" type="text" id="field-nom" name="nom" autocomplete="name">
-                <p class="form__error" data-error-for="nom" hidden></p>
+                <input class="form__input" type="text" id="field-nom" name="nom" autocomplete="name" aria-describedby="error-nom">
+                <p class="form__error" id="error-nom" data-error-for="nom" aria-live="polite" hidden></p>
               </div>
             </div>
 
             <div class="form__row">
               <label class="form__label" for="field-age">Âge</label>
               <div class="form__control-wrap">
-                <input class="form__input" type="text" id="field-age" name="age" inputmode="numeric" placeholder="18">
-                <p class="form__error" data-error-for="age" hidden></p>
+                <input class="form__input" type="text" id="field-age" name="age" inputmode="numeric" placeholder="18" aria-describedby="error-age">
+                <p class="form__error" id="error-age" data-error-for="age" aria-live="polite" hidden></p>
               </div>
             </div>
 
             <div class="form__row">
               <span class="form__label" id="label-genre">Genre</span>
               <div class="form__control-wrap">
-                <div class="form__choice-group" role="radiogroup" aria-labelledby="label-genre">
+                <div class="form__choice-group" role="radiogroup" aria-labelledby="label-genre" aria-describedby="error-genre">
                   <label class="form__choice"><input type="radio" name="genre" value="Homme"> Homme</label>
                   <label class="form__choice"><input type="radio" name="genre" value="Femme"> Femme</label>
                   <label class="form__choice"><input type="radio" name="genre" value="Autre"> Autre</label>
                 </div>
-                <p class="form__error" data-error-for="genre" hidden></p>
+                <p class="form__error" id="error-genre" data-error-for="genre" aria-live="polite" hidden></p>
               </div>
             </div>
 
             <div class="form__row">
               <label class="form__label" for="field-ville">Ville</label>
               <div class="form__control-wrap">
-                <input class="form__input" type="text" id="field-ville" name="ville" placeholder="ex. Saint-Liboire" autocomplete="address-level2">
-                <p class="form__error" data-error-for="ville" hidden></p>
+                <input class="form__input" type="text" id="field-ville" name="ville" placeholder="ex. Saint-Liboire" autocomplete="address-level2" aria-describedby="error-ville">
+                <p class="form__error" id="error-ville" data-error-for="ville" aria-live="polite" hidden></p>
               </div>
             </div>
             </div>
@@ -165,7 +165,7 @@
             <div class="form__row">
               <label class="form__label" for="field-type">Type</label>
               <div class="form__control-wrap">
-                <select class="form__input" id="field-type" name="type">
+                <select class="form__input" id="field-type" name="type" aria-describedby="error-type">
                   <option value="">— Choisir un dossier —</option>
                   <option value="Possession">Possession</option>
                   <option value="Téléport">Téléport</option>
@@ -178,27 +178,27 @@
                   <option value="Amnésie">Amnésie</option>
                 </select>
                 <p class="form__hint">Certains effets sont irréversibles. Voir la documentation… si elle existait.</p>
-                <p class="form__error" data-error-for="type" hidden></p>
+                <p class="form__error" id="error-type" data-error-for="type" aria-live="polite" hidden></p>
               </div>
             </div>
 
             <div class="form__row">
               <label class="form__label" for="field-date">Date</label>
               <div class="form__control-wrap">
-                <input class="form__input" type="date" id="field-date" name="date">
-                <p class="form__error" data-error-for="date" hidden></p>
+                <input class="form__input" type="date" id="field-date" name="date" aria-describedby="error-date">
+                <p class="form__error" id="error-date" data-error-for="date" aria-live="polite" hidden></p>
               </div>
             </div>
 
             <div class="form__row">
               <span class="form__label" id="label-creneau">Créneau</span>
               <div class="form__control-wrap">
-                <div class="form__choice-group" role="radiogroup" aria-labelledby="label-creneau">
+                <div class="form__choice-group" role="radiogroup" aria-labelledby="label-creneau" aria-describedby="error-creneau">
                   <label class="form__choice"><input type="radio" name="creneau" value="Soir"> Soir</label>
                   <label class="form__choice"><input type="radio" name="creneau" value="Nuit"> Nuit</label>
                   <label class="form__choice"><input type="radio" name="creneau" value="Aube"> Aube</label>
                 </div>
-                <p class="form__error" data-error-for="creneau" hidden></p>
+                <p class="form__error" id="error-creneau" data-error-for="creneau" aria-live="polite" hidden></p>
               </div>
             </div>
 
@@ -249,8 +249,8 @@
             <div class="form__row">
               <label class="form__label" for="field-signature">Signature</label>
               <div class="form__control-wrap">
-                <input class="form__input" type="text" id="field-signature" name="signature" placeholder="Tapez votre nom complet">
-                <p class="form__error" data-error-for="signature" hidden></p>
+                <input class="form__input" type="text" id="field-signature" name="signature" placeholder="Tapez votre nom complet" aria-describedby="error-signature">
+                <p class="form__error" id="error-signature" data-error-for="signature" aria-live="polite" hidden></p>
               </div>
             </div>
 
@@ -258,10 +258,10 @@
               <span class="form__label"></span>
               <div class="form__control-wrap">
                 <label class="form__choice">
-                  <input type="checkbox" id="field-accept" name="accept">
+                  <input type="checkbox" id="field-accept" name="accept" aria-describedby="error-accept">
                   J'accepte les conditions de traitement
                 </label>
-                <p class="form__error" data-error-for="accept" hidden></p>
+                <p class="form__error" id="error-accept" data-error-for="accept" aria-live="polite" hidden></p>
               </div>
             </div>
             </div>

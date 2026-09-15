@@ -59,6 +59,7 @@ function showError(field, message) {
 
 function markInput(input, isValid) {
   input.classList.toggle("form__input--invalid", !isValid);
+  input.setAttribute("aria-invalid", String(!isValid));
 }
 
 function validate() {

@@ -59,8 +59,11 @@ function deleteItem(item) {
   resolveItem(item, "Élément supprimé définitivement.");
 }
 
+let activeTrigger = null;
+
 function openMenu(item, trigger) {
   activeItem = item;
+  activeTrigger = trigger;
   const rect = trigger.getBoundingClientRect();
   contextMenu.style.top = `${rect.bottom}px`;
   contextMenu.style.left = `${rect.left}px`;
@@ -71,6 +74,10 @@ function openMenu(item, trigger) {
 function closeMenu() {
   contextMenu.hidden = true;
   activeItem = null;
+  if (activeTrigger && !activeTrigger.disabled) {
+    activeTrigger.focus();
+  }
+  activeTrigger = null;
 }
 
 document.querySelector("[data-trash-list]").addEventListener("click", (event) => {
