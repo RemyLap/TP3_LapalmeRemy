@@ -202,12 +202,12 @@
 
   .popup--medium {
     @apply min-h-48 md:col-span-6 md:col-start-7 md:-mt-8 md:min-h-48;
-    animation-delay: 150ms;
+    animation-delay: 500ms;
   }
 
   .popup--small {
     @apply min-h-44 md:col-span-5 md:col-start-1 md:-mt-14 md:min-h-48;
-    animation-delay: 300ms;
+    animation-delay: 1000ms;
   }
 
   .popup--closing {
