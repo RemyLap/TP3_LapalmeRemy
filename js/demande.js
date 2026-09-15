@@ -45,6 +45,21 @@ apporterOptions.forEach((option) => {
   });
 });
 
+// Icône calendrier personnalisée : l'icône native ignore le curseur CSS dans
+// certains navigateurs, donc on la neutralise (pointer-events: none) et on
+// ouvre le sélecteur natif via ce déclencheur superposé à la place.
+const dateInput = document.getElementById("field-date");
+const dateTrigger = document.querySelector("[data-date-trigger]");
+if (dateInput && dateTrigger) {
+  dateTrigger.addEventListener("click", () => {
+    if (typeof dateInput.showPicker === "function") {
+      dateInput.showPicker();
+    } else {
+      dateInput.focus();
+    }
+  });
+}
+
 // Validation JS personnalisée (validation HTML5 native désactivée via novalidate)
 const form = document.getElementById("form-demande");
 const successPanel = document.querySelector("[data-form-success]");

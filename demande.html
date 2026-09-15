@@ -185,7 +185,10 @@
             <div class="form__row">
               <label class="form__label" for="field-date">Date</label>
               <div class="form__control-wrap">
-                <input class="form__input" type="date" id="field-date" name="date" aria-describedby="error-date">
+                <div class="form__date-wrap">
+                  <input class="form__input" type="date" id="field-date" name="date" aria-describedby="error-date">
+                  <button type="button" class="form__date-trigger" data-date-trigger tabindex="-1" aria-hidden="true"></button>
+                </div>
                 <p class="form__error" id="error-date" data-error-for="date" aria-live="polite" hidden></p>
               </div>
             </div>

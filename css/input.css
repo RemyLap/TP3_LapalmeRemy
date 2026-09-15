@@ -762,6 +762,14 @@
     border-color: var(--win95-grey-shadow) white white var(--win95-grey-shadow);
   }
 
+  .form__date-wrap {
+    @apply relative;
+  }
+
+  .form__date-trigger {
+    @apply absolute inset-y-0 right-0 w-6 border-0 bg-transparent p-0;
+  }
+
   .form__input:focus-visible {
     outline: 1px solid var(--win95-blue-dark);
     outline-offset: -3px;
@@ -855,4 +863,46 @@
     @apply border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white text-gray-900 hover:brightness-105;
     background: var(--win95-grey-mid);
   }
+}
+
+/* ==========================================================================
+   Curseurs personnalisés Windows 95
+   Hors des @layer Tailwind : garantit la priorité sur toutes les classes
+   de composants qui définissent aussi `cursor`.
+   ========================================================================== */
+
+body {
+  cursor: url("../assets/icons/cursor-default.png") 2 2, default;
+}
+
+a,
+button:not(:disabled),
+label[for],
+label.form__choice,
+input[type="checkbox"],
+input[type="radio"],
+[role="button"],
+[role="tab"],
+[data-trash-trigger],
+[data-menu-action],
+[data-tab-button] {
+  cursor: url("../assets/icons/cursor-pointer.png") 13 13, pointer;
+}
+
+/* Champs de formulaire : flèche personnalisée (pas la main, réservée aux
+   éléments cliquables) plutôt que le curseur natif de l'OS. */
+.form__input,
+input[type="range"],
+.form__range::-webkit-slider-thumb,
+.form__range::-webkit-slider-runnable-track,
+.form__range::-moz-range-thumb,
+.form__range::-moz-range-track {
+  cursor: url("../assets/icons/cursor-default.png") 2 2, auto;
+}
+
+/* L'icône calendrier native (::-webkit-calendar-picker-indicator) ignore le
+   curseur CSS dans certains navigateurs : on la neutralise et on affiche
+   notre propre déclencheur par-dessus (voir .form__date-trigger). */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  pointer-events: none;
 }
