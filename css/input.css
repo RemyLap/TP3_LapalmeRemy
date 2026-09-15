@@ -16,7 +16,7 @@
   --win95-grey-shadow: #404040;
   --win95-orange: #ff8c00;
   --win95-red: #c0392b;
-  --win95-yellow-folder: #f5c518;
+  --win95-yellow-folder: #e0c04a;
 }
 
 /* ==========================================================================
@@ -397,14 +397,6 @@
 
   .folder-icon--large {
     @apply h-11 w-14;
-  }
-
-  .folder-icon--small {
-    @apply h-6 w-8;
-  }
-
-  .folder-icon--muted {
-    @apply opacity-50;
   }
 
   .folder-grid {
