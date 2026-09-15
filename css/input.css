@@ -10,7 +10,7 @@
   --win95-blue-dark: #1a14c3;
   --win95-blue-light: #3a6ea5;
   --win95-grey-light: #ece9d8;
-  --win95-white-aged: #f6f5ee;
+  --win95-grey-pale: #bcbcbc;
   --win95-grey-mid: #b0b0b0;
   --win95-grey-dark: #808080;
   --win95-grey-shadow: #404040;
@@ -149,7 +149,7 @@
   }
 
   .window__address-value {
-    @apply min-w-0 flex-1 truncate border-2 bg-[var(--win95-white-aged)] px-2 py-1 text-gray-700;
+    @apply min-w-0 flex-1 truncate border-2 bg-[var(--win95-grey-pale)] px-2 py-1 text-gray-700;
     border-color: var(--win95-grey-shadow) white white var(--win95-grey-shadow);
   }
 
@@ -171,13 +171,13 @@
 
   .window__body {
     @apply grid min-h-0 flex-1 auto-rows-min grid-cols-12 content-start gap-4 overflow-y-auto p-4 sm:p-6;
-    background: var(--win95-white-aged);
+    background: var(--win95-grey-pale);
   }
 
   .window__section--inset {
     @apply relative -mx-4 -mt-4 h-[378px] overflow-y-auto border-[16px] border-t-[6px] px-4 pt-2 sm:-mx-6 sm:-mt-6 sm:px-6 sm:pt-3;
     border-color: var(--win95-grey-mid);
-    background: var(--win95-white-aged);
+    background: var(--win95-grey-pale);
   }
 
   .page--corbeille .window__section--inset {
@@ -758,7 +758,7 @@
   }
 
   .form__input {
-    @apply w-full border-2 bg-[var(--win95-white-aged)] px-2 py-1 text-sm text-black outline-none;
+    @apply w-full border-2 bg-[var(--win95-grey-pale)] px-2 py-1 text-sm text-black outline-none;
     border-color: var(--win95-grey-shadow) white white var(--win95-grey-shadow);
   }
 
