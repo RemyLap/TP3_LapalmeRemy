@@ -238,6 +238,14 @@
     @apply h-11 w-14;
   }
 
+  .folder-icon--small {
+    @apply h-6 w-8;
+  }
+
+  .folder-icon--muted {
+    @apply opacity-50;
+  }
+
   .folder-grid {
     @apply grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4;
   }
@@ -339,5 +347,81 @@
   .system-status__progress-fill {
     @apply h-full transition-[width] duration-700 ease-out;
     background: linear-gradient(90deg, var(--win95-orange), var(--win95-blue-light));
+  }
+}
+
+/* ==========================================================================
+   Corbeille (blocs .trash-list, .trash-summary, .trash-action)
+   ========================================================================== */
+
+@layer components {
+  .trash-list {
+    @apply space-y-1;
+  }
+
+  .trash-list__item {
+    @apply flex items-center gap-3 border-b border-black/10 py-2 last:border-b-0;
+    animation: trash-item-in 0.3s ease-out both;
+  }
+
+  .trash-list__item--removing {
+    animation: trash-item-out 0.3s ease-in forwards;
+  }
+
+  .trash-list__item--mystery {
+    animation: trash-item-in 0.4s ease-out both;
+  }
+
+  .trash-list__name {
+    @apply text-sm text-gray-700 line-through decoration-gray-500;
+  }
+
+  .trash-list__item--mystery .trash-list__name {
+    @apply font-semibold text-[var(--win95-red)] no-underline;
+  }
+
+  .trash-list__hint {
+    @apply mt-2 text-xs text-gray-500 italic;
+  }
+
+  .trash-summary {
+    @apply flex flex-wrap gap-x-8 gap-y-1;
+  }
+
+  .trash-summary__stat {
+    @apply text-sm text-gray-800;
+  }
+
+  .trash-summary__label {
+    @apply text-gray-600;
+  }
+
+  .trash-action__status {
+    @apply mt-2 text-sm text-gray-700;
+  }
+}
+
+@keyframes trash-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes trash-item-out {
+  to {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trash-list__item,
+  .trash-list__item--mystery {
+    animation: none;
   }
 }

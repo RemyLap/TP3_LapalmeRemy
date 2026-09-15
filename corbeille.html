@@ -29,20 +29,46 @@
 
     <main class="window__body">
       <section class="window__section" aria-label="Contenu">
-        <!-- TODO (étape Corbeille) : liste des 4 éléments supprimés -->
+        <h2 class="window__section-title">Contenu</h2>
+        <ul class="trash-list" data-trash-list>
+          <li class="trash-list__item" data-trash-item>
+            <span class="folder-icon folder-icon--small folder-icon--muted" aria-hidden="true"></span>
+            <span class="trash-list__name">Dossier_0203</span>
+          </li>
+          <li class="trash-list__item" data-trash-item>
+            <span class="folder-icon folder-icon--small folder-icon--muted" aria-hidden="true"></span>
+            <span class="trash-list__name">Temoin_supprime</span>
+          </li>
+          <li class="trash-list__item" data-trash-item>
+            <span class="folder-icon folder-icon--small folder-icon--muted" aria-hidden="true"></span>
+            <span class="trash-list__name">backup_ancien</span>
+          </li>
+          <li class="trash-list__item" data-trash-item>
+            <span class="folder-icon folder-icon--small folder-icon--muted" aria-hidden="true"></span>
+            <span class="trash-list__name">rapport_final</span>
+          </li>
+        </ul>
+        <p class="trash-list__hint" data-trash-hint hidden>Un élément non répertorié a été détecté pendant la restauration.</p>
       </section>
 
       <section class="window__section" aria-label="Résumé">
-        <!-- TODO (étape Corbeille) : nombre d'éléments + espace occupé -->
+        <h2 class="window__section-title">Résumé</h2>
+        <div class="trash-summary">
+          <p class="trash-summary__stat"><span class="trash-summary__label">Éléments :</span> <span data-summary="count">4</span></p>
+          <p class="trash-summary__stat"><span class="trash-summary__label">Espace occupé :</span> <span data-summary="size">12,4 Mo</span></p>
+        </div>
       </section>
 
       <section class="window__section" aria-label="Action">
-        <!-- TODO (étape Corbeille) : bouton "Restaurer tout" -->
+        <h2 class="window__section-title">Action</h2>
+        <button type="button" class="button button--primary" data-restore-button>Restaurer tout</button>
+        <p class="trash-action__status" data-restore-status aria-live="polite"></p>
       </section>
     </main>
 
     <footer class="window__statusbar">
-      <!-- TODO (étape barre de statut) : nombre d'objets + statut + heure -->
+      <span>4 objet(s)</span>
+      <span>statut: en ligne</span>
     </footer>
   </div>
 
