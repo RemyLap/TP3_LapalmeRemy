@@ -7,7 +7,7 @@
    ========================================================================== */
 
 :root {
-  --win95-blue-dark: #0a246a;
+  --win95-blue-dark: #1a14c3;
   --win95-blue-light: #3a6ea5;
   --win95-grey-light: #ece9d8;
   --win95-grey-mid: #c0c0c0;
@@ -25,6 +25,7 @@
 @layer base {
   body {
     @apply flex min-h-screen items-center justify-center bg-[var(--win95-grey-dark)] p-2 sm:p-4;
+    font-family: "MS Sans Serif", "Pixelated MS Sans Serif", Tahoma, Geneva, Arial, sans-serif;
   }
 
   ::selection {
@@ -92,14 +93,15 @@
 
 @layer components {
   .window {
-    @apply mx-auto flex max-h-[94vh] w-full max-w-5xl flex-col border border-[var(--win95-grey-shadow)] shadow-lg;
+    @apply mx-auto flex max-h-[94vh] w-full max-w-5xl flex-col border border-[var(--win95-grey-shadow)];
     background: var(--win95-grey-mid);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
   }
 
   .window__titlebar,
   .dialog__titlebar {
     @apply flex items-center justify-between gap-4 px-2 py-1;
-    background: linear-gradient(90deg, var(--win95-blue-dark) 0%, var(--win95-blue-light) 100%);
+    background: var(--win95-blue-dark);
   }
 
   .window__title,
@@ -109,14 +111,25 @@
 
   .window__controls,
   .dialog__controls {
-    @apply flex shrink-0 gap-1;
+    @apply flex shrink-0 gap-0.5;
+  }
+
+  .window__control--close,
+  .dialog__control--close {
+    @apply ml-1;
   }
 
   .window__control,
   .dialog__control,
   .popup__close {
-    @apply h-4 w-5 border border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white sm:h-5 sm:w-6;
+    @apply cursor-pointer border-2 border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white hover:brightness-105;
     background: var(--win95-grey-mid);
+  }
+
+  .window__control,
+  .dialog__control,
+  .popup__close {
+    @apply h-4 w-5 sm:h-5 sm:w-6;
   }
 
   .window__control:active,
@@ -171,29 +184,95 @@
 
 @layer components {
   .popup {
-    @apply col-span-12 flex min-w-0 flex-col border border-[var(--win95-grey-shadow)] bg-white shadow-md;
+    @apply col-span-12 flex min-w-0 flex-col border-2 border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white;
+    background: var(--win95-grey-mid);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
     animation: popup-in 0.4s ease-out both;
   }
 
   .popup__titlebar {
     @apply flex items-center justify-between gap-2 px-2 py-1;
-    background: linear-gradient(90deg, var(--win95-blue-dark), var(--win95-blue-light));
+    background: var(--win95-blue-dark);
   }
 
   .popup__title {
     @apply text-sm font-bold text-white;
   }
 
-  .popup__close {
-    @apply flex items-center justify-center text-xs leading-none text-gray-800;
+  .popup__close,
+  .window__control--close,
+  .dialog__control--close {
+    @apply relative;
+  }
+
+  .popup__close::before,
+  .popup__close::after,
+  .window__control--close::before,
+  .window__control--close::after,
+  .dialog__control--close::before,
+  .dialog__control--close::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 78%;
+    height: 2.5px;
+    background: black;
+  }
+
+  .popup__close::before,
+  .window__control--close::before,
+  .dialog__control--close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .popup__close::after,
+  .window__control--close::after,
+  .dialog__control--close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .window__control--minimize,
+  .dialog__control--minimize {
+    @apply relative;
+  }
+
+  .window__control--minimize::before,
+  .dialog__control--minimize::before {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    width: 55%;
+    height: 2.5px;
+    background: black;
+    transform: translateX(-50%);
+  }
+
+  .window__control--maximize,
+  .dialog__control--maximize {
+    @apply relative;
+  }
+
+  .window__control--maximize::before,
+  .dialog__control--maximize::before {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    width: 65%;
+    height: 68%;
+    border: 2px solid black;
+    border-top-width: 4.5px;
+    transform: translateX(-50%);
   }
 
   .popup__body {
-    @apply flex-1 space-y-4 p-6 text-sm text-gray-800;
+    @apply flex flex-1 flex-col items-start justify-center space-y-4 p-6 text-base font-medium text-black;
   }
 
   .popup__heading {
-    @apply text-lg font-bold text-gray-900;
+    @apply text-lg font-bold text-black;
   }
 
   .popup--large {
@@ -251,7 +330,14 @@
 
 @layer components {
   .button {
-    @apply inline-block cursor-pointer border px-4 py-2 text-sm font-semibold active:translate-y-px;
+    @apply inline-block cursor-pointer border-2 px-4 py-2 text-sm font-semibold;
+  }
+
+  .button:active {
+    border-top-color: var(--win95-grey-shadow);
+    border-left-color: var(--win95-grey-shadow);
+    border-bottom-color: white;
+    border-right-color: white;
   }
 
   .button--primary {
@@ -539,8 +625,9 @@
   }
 
   .dialog {
-    @apply relative z-20 mx-auto flex max-h-[94vh] w-full max-w-2xl flex-col border border-[var(--win95-grey-shadow)] shadow-lg;
+    @apply relative z-20 mx-auto flex max-h-[94vh] w-full max-w-2xl flex-col border border-[var(--win95-grey-shadow)];
     background: var(--win95-grey-mid);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
   }
 
   .dialog__tabs {
