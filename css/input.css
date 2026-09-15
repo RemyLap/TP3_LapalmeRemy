@@ -191,3 +191,153 @@
     background: var(--win95-blue-light);
   }
 }
+
+/* ==========================================================================
+   Sections génériques de fenêtre (bloc .window__section) - Dossiers, Corbeille
+   ========================================================================== */
+
+@layer components {
+  .window__section {
+    @apply col-span-12 space-y-3 border-b border-black/15 pb-4 last:border-b-0 last:pb-0;
+  }
+
+  .window__section-title {
+    @apply text-xs font-bold tracking-wide text-blue-950/70 uppercase;
+  }
+}
+
+/* ==========================================================================
+   Grille de dossiers (bloc .folder-grid) - page Dossiers
+   ========================================================================== */
+
+@layer components {
+  .folder-icon {
+    @apply relative h-8 w-10 border border-black/30;
+    background: var(--win95-yellow-folder);
+    border-radius: 0 2px 2px 2px;
+  }
+
+  .folder-icon::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 0;
+    width: 16px;
+    height: 6px;
+    background: inherit;
+    border: inherit;
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .folder-icon--corrupted {
+    background: var(--win95-red);
+  }
+
+  .folder-icon--large {
+    @apply h-11 w-14;
+  }
+
+  .folder-grid {
+    @apply grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4;
+  }
+
+  .folder-grid__item {
+    @apply flex cursor-pointer flex-col items-center gap-1 border border-transparent bg-transparent p-2 text-center hover:border-[var(--win95-grey-shadow)] hover:bg-white/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--win95-blue-dark)];
+  }
+
+  .folder-grid__item--selected {
+    @apply border-[var(--win95-grey-shadow)] bg-white/70;
+  }
+
+  .folder-grid__label {
+    @apply text-xs text-gray-800;
+  }
+
+  .folder-grid__item--corrupted .folder-grid__label {
+    @apply text-[var(--win95-red)];
+  }
+}
+
+/* ==========================================================================
+   Détail du dossier sélectionné (bloc .folder-detail) - page Dossiers
+   ========================================================================== */
+
+@layer components {
+  .folder-detail {
+    @apply flex items-start gap-4;
+  }
+
+  .folder-detail__body {
+    @apply min-w-0 flex-1 space-y-1;
+  }
+
+  .folder-detail__name {
+    @apply font-bold text-gray-900;
+  }
+
+  .folder-detail__description {
+    @apply text-sm text-gray-700;
+  }
+
+  .folder-detail__meta {
+    @apply flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-600;
+  }
+
+  .folder-detail__meta-item--warning {
+    @apply font-semibold;
+    color: var(--win95-orange);
+  }
+
+  .folder-detail__meta-item--danger {
+    @apply font-semibold;
+    color: var(--win95-red);
+  }
+
+  .folder-detail__action {
+    @apply mt-2;
+  }
+
+  .folder-detail__action--hidden {
+    @apply invisible;
+  }
+}
+
+/* ==========================================================================
+   Statut du système (bloc .system-status) - page Dossiers
+   ========================================================================== */
+
+@layer components {
+  .system-status__stats {
+    @apply grid grid-cols-3 gap-3;
+  }
+
+  .system-status__stat {
+    @apply border border-[var(--win95-grey-shadow)] bg-white p-3 text-center;
+  }
+
+  .system-status__stat-value {
+    @apply block text-xl font-bold text-gray-900;
+  }
+
+  .system-status__stat-label {
+    @apply block text-[10px] tracking-wide text-gray-500 uppercase;
+  }
+
+  .system-status__progress {
+    @apply mt-3 space-y-1;
+  }
+
+  .system-status__progress-label {
+    @apply flex justify-between text-xs font-semibold text-gray-700;
+  }
+
+  .system-status__progress-track {
+    @apply h-3 w-full border border-[var(--win95-grey-shadow)] bg-white;
+  }
+
+  .system-status__progress-fill {
+    @apply h-full transition-[width] duration-700 ease-out;
+    background: linear-gradient(90deg, var(--win95-orange), var(--win95-blue-light));
+  }
+}

@@ -29,20 +29,104 @@
 
     <main class="window__body">
       <section class="window__section" aria-label="Fichiers dans ce dossier">
-        <!-- TODO (étape Dossiers) : grille de 12 dossiers (3 rangées de 4) -->
+        <h2 class="window__section-title">Fichiers dans ce dossier</h2>
+        <div class="folder-grid" role="group" aria-label="Liste des dossiers">
+          <button type="button" class="folder-grid__item folder-grid__item--corrupted" data-corrupted="true" data-name="Enlèvement" data-file="Enlèvement.sys" data-description="Fichier corrompu. Dernière lecture : coordonnées incohérentes (latitude négative x3)." aria-pressed="false">
+            <span class="folder-icon folder-icon--corrupted" aria-hidden="true"></span>
+            <span class="folder-grid__label">Enlèvement</span>
+          </button>
+          <button type="button" class="folder-grid__item" data-name="Possession" data-file="Possession.sys" data-description="Occupation temporaire du corps. Durée moyenne : 6 à 48h. Effets secondaires possibles : voix modifiée, attirance pour le sel de mer." data-cases="312" data-stability="88" data-reversibility="partielle" data-reversibility-level="warning" aria-pressed="true">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span class="folder-grid__label">Possession</span>
+          </button>
+          <button type="button" class="folder-grid__item" data-name="Téléport" data-file="Teleport.sys" data-description="Déplacement instantané non autorisé vers une destination aléatoire (garantie non incluse)." data-cases="140" data-stability="72" data-reversibility="totale" aria-pressed="false">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span class="folder-grid__label">Téléport</span>
+          </button>
+          <button type="button" class="folder-grid__item" data-name="Contact" data-file="Contact.sys" data-description="Communication à sens unique avec une entité non identifiée. Répond rarement, mais poliment." data-cases="95" data-stability="80" data-reversibility="totale" aria-pressed="false">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span class="folder-grid__label">Contact</span>
+          </button>
+          <button type="button" class="folder-grid__item" data-name="Régression" data-file="Regression.sys" data-description="Retour temporaire à une vie antérieure, réelle ou inventée par votre subconscient." data-cases="61" data-stability="54" data-reversibility="incertaine" data-reversibility-level="warning" aria-pressed="false">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span class="folder-grid__label">Régression</span>
+          </button>
+          <button type="button" class="folder-grid__item" data-name="Double" data-file="Double.sys" data-description="Duplication physique temporaire. Les deux copies revendiquent être l'originale." data-cases="48" data-stability="39" data-reversibility="rare" data-reversibility-level="danger" aria-pressed="false">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span class="folder-grid__label">Double</span>
+          </button>
+          <button type="button" class="folder-grid__item folder-grid__item--corrupted" data-corrupted="true" data-name="????" data-file="????.sys" data-description="Le fichier ne s'ouvre pas. Personne ne sait pourquoi il existe." aria-pressed="false">
+            <span class="folder-icon folder-icon--corrupted" aria-hidden="true"></span>
+            <span class="folder-grid__label">????</span>
+          </button>
+          <button type="button" class="folder-grid__item" data-name="Invasion" data-file="Invasion.sys" data-description="Occupation collective du domicile par des entités bruyantes mais globalement inoffensives." data-cases="204" data-stability="91" data-reversibility="totale" aria-pressed="false">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span class="folder-grid__label">Invasion</span>
+          </button>
+          <button type="button" class="folder-grid__item" data-name="Résurrection" data-file="Resurrection.sys" data-description="Retour à la vie de courte durée. Non recommandé pour les repas de famille." data-cases="12" data-stability="22" data-reversibility="aucune" data-reversibility-level="danger" aria-pressed="false">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span class="folder-grid__label">Résurrection</span>
+          </button>
+          <button type="button" class="folder-grid__item" data-name="Vision" data-file="Vision.sys" data-description="Aperçus involontaires d'évènements passés ou futurs, rarement utiles." data-cases="176" data-stability="85" data-reversibility="totale" aria-pressed="false">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span class="folder-grid__label">Vision</span>
+          </button>
+          <button type="button" class="folder-grid__item" data-name="Amnésie" data-file="Amnesie.sys" data-description="Perte sélective de souvenirs, généralement les plus embarrassants." data-cases="133" data-stability="93" data-reversibility="totale" aria-pressed="false">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span class="folder-grid__label">Amnésie</span>
+          </button>
+          <button type="button" class="folder-grid__item" data-name="Archives" data-file="Archives.sys" data-description="Dossier de consultation seule. Aucune demande n'est traitée depuis ce dossier." data-cases="530" data-stability="100" data-reversibility="sans objet" data-requestable="false" aria-pressed="false">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span class="folder-grid__label">Archives</span>
+          </button>
+        </div>
       </section>
 
       <section class="window__section" aria-label="Dossier sélectionné">
-        <!-- TODO (étape Dossiers) : icône + description du dossier sélectionné -->
+        <h2 class="window__section-title">Dossier sélectionné</h2>
+        <div class="folder-detail">
+          <span class="folder-icon folder-icon--large" aria-hidden="true" data-detail="icon"></span>
+          <div class="folder-detail__body">
+            <p class="folder-detail__name" data-detail="file">Possession.sys</p>
+            <p class="folder-detail__description" data-detail="description">Occupation temporaire du corps. Durée moyenne : 6 à 48h. Effets secondaires possibles : voix modifiée, attirance pour le sel de mer.</p>
+            <p class="folder-detail__meta" data-detail="meta">
+              <span data-detail="cases">312 cas archivés</span>
+              <span data-detail="stability">stabilité 88%</span>
+              <span class="folder-detail__meta-item--warning" data-detail="reversibility">réversibilité : partielle</span>
+            </p>
+            <a class="button button--primary folder-detail__action" data-detail="action" href="demande.html?type=Possession">Faire une demande →</a>
+          </div>
+        </div>
       </section>
 
       <section class="window__section" aria-label="Statut du système">
-        <!-- TODO (étape Dossiers) : statistiques + barre d'intégrité -->
+        <h2 class="window__section-title">Statut du système</h2>
+        <div class="system-status__stats">
+          <div class="system-status__stat">
+            <span class="system-status__stat-value">12</span>
+            <span class="system-status__stat-label">dossiers</span>
+          </div>
+          <div class="system-status__stat">
+            <span class="system-status__stat-value">2</span>
+            <span class="system-status__stat-label">corrompus</span>
+          </div>
+          <div class="system-status__stat">
+            <span class="system-status__stat-value">61%</span>
+            <span class="system-status__stat-label">stabilité</span>
+          </div>
+        </div>
+        <div class="system-status__progress">
+          <p class="system-status__progress-label"><span>Intégrité du système</span><span>61%</span></p>
+          <div class="system-status__progress-track" role="progressbar" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100" aria-label="Intégrité du système">
+            <div class="system-status__progress-fill" style="width: 61%"></div>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer class="window__statusbar">
-      <!-- TODO (étape barre de statut) : nombre d'objets + statut + heure -->
+      <span>12 objet(s)</span>
+      <span>statut: en ligne</span>
     </footer>
   </div>
 
