@@ -28,7 +28,7 @@
   --win95-grey-dark: #808080;
   --win95-grey-shadow: #404040;
   --win95-orange: #ff8c00;
-  --win95-red: #c0392b;
+  --win95-red: #7a2419;
   --win95-yellow-folder: #e0c04a;
 }
 
@@ -211,7 +211,7 @@
   }
 
   .window__statusbar {
-    @apply flex items-center gap-4 border border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white px-3 py-1 text-xs text-gray-700;
+    @apply flex items-center gap-4 border border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white px-3 py-1 text-sm text-gray-800;
     background: var(--win95-grey-mid);
   }
 }
@@ -497,7 +497,7 @@
   }
 
   .folder-detail__meta {
-    @apply flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-600;
+    @apply flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-800;
   }
 
   .folder-detail__meta-item--warning {
@@ -845,11 +845,11 @@
   }
 
   .form__hint {
-    @apply text-xs text-gray-500 italic;
+    @apply text-sm text-gray-700 italic;
   }
 
   .form__error {
-    @apply text-xs font-semibold text-[var(--win95-red)];
+    @apply text-sm font-semibold text-[var(--win95-red)];
   }
 }
 

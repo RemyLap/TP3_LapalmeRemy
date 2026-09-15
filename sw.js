@@ -1,4 +1,4 @@
-const CACHE_NAME = "tp3-system-v27";
+const CACHE_NAME = "tp3-system-v28";
 
 const PRECACHE_URLS = [
   "index.html",
