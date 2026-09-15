@@ -50,3 +50,21 @@ function selectFolder(button) {
 folderButtons.forEach((button) => {
   button.addEventListener("click", () => selectFolder(button));
 });
+
+const progressFill = document.querySelector(".system-status__progress-fill");
+const progressSegment = 16;
+
+function snapProgressFill() {
+  if (!progressFill) return;
+  const track = progressFill.parentElement;
+  const percent = Number(progressFill.dataset.progress);
+  const trackWidth = track.getBoundingClientRect().width;
+  const targetWidth = (trackWidth * percent) / 100;
+  const snappedWidth = Math.floor(targetWidth / progressSegment) * progressSegment;
+  progressFill.style.width = `${snappedWidth}px`;
+}
+
+if (progressFill) {
+  snapProgressFill();
+  window.addEventListener("resize", snapProgressFill);
+}

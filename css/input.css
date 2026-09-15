@@ -532,12 +532,20 @@
   }
 
   .system-status__progress-track {
-    @apply h-3 w-full border border-[var(--win95-grey-shadow)] bg-white;
+    @apply h-7 w-full border-2 p-0.5;
+    border-color: var(--win95-grey-shadow) white white var(--win95-grey-shadow);
+    background: var(--win95-grey-mid);
   }
 
   .system-status__progress-fill {
     @apply h-full transition-[width] duration-700 ease-out;
-    background: linear-gradient(90deg, var(--win95-orange), var(--win95-blue-light));
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--win95-blue-dark) 0,
+      var(--win95-blue-dark) 14px,
+      transparent 14px,
+      transparent 16px
+    );
   }
 }
 
