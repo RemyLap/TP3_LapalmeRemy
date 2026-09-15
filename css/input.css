@@ -559,11 +559,28 @@
   }
 
   .trash-list__item {
-    @apply flex items-center gap-3 border-b border-black/10 py-2 last:border-b-0;
+    @apply flex items-center border-b border-black/10 py-2 last:border-b-0;
   }
 
   .trash-list__name {
-    @apply cursor-pointer border-0 bg-transparent p-0 text-sm text-gray-700 line-through decoration-gray-500 hover:text-[var(--win95-blue-dark)] hover:decoration-[var(--win95-blue-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--win95-blue-dark)];
+    @apply -mt-1 flex w-fit cursor-pointer items-center gap-2 border p-1 pt-2 outline-none;
+    border-color: transparent;
+  }
+
+  .trash-list__name:hover,
+  .trash-list__name:focus-visible {
+    border: 1px dotted var(--win95-grey-shadow);
+    background: var(--win95-blue-light);
+  }
+
+  .trash-list__label {
+    @apply text-sm text-gray-700 line-through decoration-gray-500;
+  }
+
+  .trash-list__name:hover .trash-list__label,
+  .trash-list__name:focus-visible .trash-list__label {
+    color: white;
+    text-decoration-color: white;
   }
 
   .trash-list__item--restoring {
@@ -586,7 +603,7 @@
     @apply visible opacity-100;
   }
 
-  .trash-list__item--mystery .trash-list__name {
+  .trash-list__item--mystery .trash-list__label {
     @apply font-semibold text-[var(--win95-red)] no-underline;
   }
 
