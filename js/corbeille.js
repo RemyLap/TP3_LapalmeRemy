@@ -47,7 +47,10 @@ function revealMysteryFile() {
   mysteryItem.classList.add("trash-list__item--revealed");
   mysteryItem.setAttribute("aria-hidden", "false");
   restoreAllButton.textContent = "Tout a été restauré";
-  restoreAllButton.disabled = true;
+  // Pas de vrai `disabled` : les navigateurs forcent le curseur natif sur les
+  // boutons désactivés, peu importe le CSS. Le clic ne fait déjà plus rien
+  // une fois la liste vide (pendingItems().forEach sur un tableau vide).
+  restoreAllButton.setAttribute("aria-disabled", "true");
 }
 
 function resolveItem_(item, message) {

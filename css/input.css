@@ -197,6 +197,16 @@
     height: 400px;
   }
 
+  /* Sections "Résumé" et "Action" de même hauteur (au lieu que la dernière
+     s'étire pour occuper tout l'espace restant). Le rembourrage bas du
+     conteneur est retiré : il s'ajoutait à celui de la dernière section
+     (qui a déjà son propre pb-4), créant un espace vide avant le pied de
+     page. */
+  .page--corbeille .window__body--stack {
+    grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
+    padding-bottom: 0;
+  }
+
   .window__section--inset::before {
     content: "";
     position: absolute;
@@ -710,15 +720,15 @@
   }
 
   .trash-summary__label {
-    @apply text-gray-600;
+    @apply text-gray-700;
   }
 
   .trash-summary__note {
-    @apply mt-2 text-xs text-gray-500 italic;
+    @apply mt-2 text-sm text-gray-700 italic;
   }
 
   .trash-action__warning {
-    @apply mt-2 text-xs text-gray-500 italic;
+    @apply mt-2 text-sm text-gray-700 italic;
   }
 
   .trash-action__status {
