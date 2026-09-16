@@ -206,11 +206,12 @@
      de là. */
   @media (max-width: 800px) {
     .window__section--inset {
-      border: 0;
+      border: 0 !important;
+      box-shadow: none !important;
     }
 
     .window__section--inset::before {
-      border: none;
+      display: none !important;
     }
   }
 
