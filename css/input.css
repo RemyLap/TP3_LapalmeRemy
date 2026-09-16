@@ -554,7 +554,7 @@
   }
 
   .system-status__stat-label {
-    @apply block text-sm tracking-wide text-gray-500 uppercase;
+    @apply block text-sm tracking-wide text-gray-700 uppercase;
   }
 
   .system-status__progress {
