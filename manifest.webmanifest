@@ -30,11 +30,11 @@
   ],
   "screenshots": [
     {
-      "src": "assets/screenshots/dossiers-1280x800.png",
+      "src": "assets/screenshots/accueil-1280x800.png",
       "sizes": "1280x800",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Page Mes Dossiers du site SYSTEM"
+      "label": "Page d'accueil du site SYSTEM avec ses fenêtres popup"
     }
   ]
 }
