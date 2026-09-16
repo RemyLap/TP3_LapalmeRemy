@@ -28,8 +28,8 @@ function selectFolder(button) {
 
   if (corrupted) {
     detail.cases.textContent = "cas archivés : —";
-    detail.stability.textContent = "stabilité : —";
-    detail.reversibility.textContent = "réversibilité : inconnue";
+    detail.stability.textContent = `stabilité : ${data.stability || "—"}`;
+    detail.reversibility.textContent = `réversibilité : ${data.reversibility || "inconnue"}`;
     detail.reversibility.className = "folder-detail__meta-item--danger";
     detail.reversibility.setAttribute("data-detail", "reversibility");
     detail.action.classList.add("folder-detail__action--hidden");
