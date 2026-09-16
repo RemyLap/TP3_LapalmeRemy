@@ -60,17 +60,31 @@ folderButtons.forEach((button) => {
 });
 
 // Fichier caché révélé après avoir été restauré depuis la Corbeille.
+let mysteryRestored = false;
 try {
-  if (localStorage.getItem("system-mystery-file-restored") === "true") {
+  mysteryRestored = localStorage.getItem("system-mystery-file-restored") === "true";
+  if (mysteryRestored) {
     const mysteryFolder = document.querySelector("[data-mystery-folder]");
     if (mysteryFolder) mysteryFolder.hidden = false;
+
+    const corruptedCount = document.querySelector("[data-corrupted-count]");
+    if (corruptedCount) corruptedCount.textContent = "3";
   }
 } catch {
   // Stockage indisponible (navigation privée, etc.) : le fichier reste caché.
 }
 
 const progressFill = document.querySelector(".system-status__progress-fill");
+const progressPercentEl = document.querySelector(".system-status__progress-percent");
 const progressSegment = 16;
+
+function setProgressValue(percent) {
+  if (!progressFill) return;
+  progressFill.dataset.progress = percent;
+  progressFill.parentElement.setAttribute("aria-valuenow", percent);
+  if (progressPercentEl) progressPercentEl.textContent = `${percent}%`;
+  snapProgressFill();
+}
 
 function snapProgressFill() {
   if (!progressFill) return;
@@ -85,4 +99,72 @@ function snapProgressFill() {
 if (progressFill) {
   snapProgressFill();
   window.addEventListener("resize", snapProgressFill);
+}
+
+// Le système est compromis (fichier "6-7" retrouvé) : l'intégrité chute
+// jusqu'à 2%, puis boucle sur la séquence 2%-4%-3%-4%-2% en vibrant tout du
+// long, comme un capteur défectueux. La grande descente initiale (61% → 2%)
+// ne rejoue qu'une seule fois, jamais aux visites suivantes.
+if (mysteryRestored && progressFill) {
+  const restValue = 2;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let alreadyCollapsed = false;
+  try {
+    alreadyCollapsed = localStorage.getItem("system-integrity-collapsed") === "true";
+  } catch {
+    // Stockage indisponible : la descente rejouera à chaque visite.
+  }
+
+  if (reduceMotion) {
+    setProgressValue(restValue);
+  } else {
+    const easeInOutQuad = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
+
+    progressFill.style.transition = "none";
+
+    function animateProgressTo(target, duration) {
+      return new Promise((resolve) => {
+        const from = Number(progressFill.dataset.progress);
+        let startTime = null;
+        function frame(now) {
+          if (startTime === null) startTime = now;
+          const t = Math.min((now - startTime) / duration, 1);
+          setProgressValue(Math.round(from + (target - from) * easeInOutQuad(t)));
+          if (t < 1) requestAnimationFrame(frame);
+          else resolve();
+        }
+        requestAnimationFrame(frame);
+      });
+    }
+
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const progressContainer = document.querySelector(".system-status__progress");
+    const BUMP_SEQUENCE = [4, 3, 4, restValue];
+
+    async function glitchLoop() {
+      if (progressContainer) progressContainer.classList.add("system-status__progress--glitching");
+      for (;;) {
+        await wait(3500 + Math.random() * 2500);
+        for (const value of BUMP_SEQUENCE) {
+          await animateProgressTo(value, 350);
+        }
+      }
+    }
+
+    if (alreadyCollapsed) {
+      setProgressValue(restValue);
+      glitchLoop();
+    } else {
+      setTimeout(async () => {
+        await animateProgressTo(restValue, 2600);
+        try {
+          localStorage.setItem("system-integrity-collapsed", "true");
+        } catch {
+          // Stockage indisponible : tant pis, la descente rejouera.
+        }
+        glitchLoop();
+      }, 900);
+    }
+  }
 }

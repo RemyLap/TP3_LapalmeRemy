@@ -1,3 +1,72 @@
+// Synchroniser le décor flouté (fausse page Dossiers) avec le vrai état du
+// système : si "6-7" a déjà été révélé, il reproduit aussi l'animation de
+// jauge instable (2% + glitch) ; sinon il reste fixe à 61%.
+try {
+  if (localStorage.getItem("system-mystery-file-restored") === "true") {
+    const backdrop = document.querySelector(".modal-backdrop");
+    if (backdrop) {
+      const mysteryFolder = backdrop.querySelector("[data-mystery-folder]");
+      if (mysteryFolder) mysteryFolder.hidden = false;
+
+      const corruptedCount = backdrop.querySelector("[data-corrupted-count]");
+      if (corruptedCount) corruptedCount.textContent = "3";
+
+      const percentEl = backdrop.querySelector(".system-status__progress-percent");
+      const fillEl = backdrop.querySelector(".system-status__progress-fill");
+      const progressContainer = backdrop.querySelector(".system-status__progress");
+      const restValue = 2;
+
+      function setBackdropValue(value) {
+        if (percentEl) percentEl.textContent = `${value}%`;
+        if (fillEl) fillEl.style.width = `${value}%`;
+      }
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (reduceMotion || !fillEl) {
+        setBackdropValue(restValue);
+      } else {
+        fillEl.style.transition = "none";
+
+        const easeInOutQuad = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
+
+        function animateBackdropTo(target, duration) {
+          return new Promise((resolve) => {
+            const from = parseFloat(fillEl.style.width) || 61;
+            let startTime = null;
+            function frame(now) {
+              if (startTime === null) startTime = now;
+              const t = Math.min((now - startTime) / duration, 1);
+              setBackdropValue(Math.round(from + (target - from) * easeInOutQuad(t)));
+              if (t < 1) requestAnimationFrame(frame);
+              else resolve();
+            }
+            requestAnimationFrame(frame);
+          });
+        }
+
+        const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+        const BUMP_SEQUENCE = [4, 3, 4, restValue];
+
+        async function backdropGlitchLoop() {
+          if (progressContainer) progressContainer.classList.add("system-status__progress--glitching");
+          setBackdropValue(restValue);
+          for (;;) {
+            await wait(3500 + Math.random() * 2500);
+            for (const value of BUMP_SEQUENCE) {
+              await animateBackdropTo(value, 350);
+            }
+          }
+        }
+
+        backdropGlitchLoop();
+      }
+    }
+  }
+} catch {
+  // Stockage indisponible (navigation privée, etc.) : le décor garde son état par défaut.
+}
+
 // Onglets Général / Avancé
 const tabButtons = document.querySelectorAll("[data-tab-button]");
 tabButtons.forEach((button) => {

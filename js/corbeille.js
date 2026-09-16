@@ -85,6 +85,11 @@ function resolveMystery(message) {
       mysteryItem.classList.remove("trash-list__item--restoring");
       mysteryItem.classList.add("trash-list__item--resolved");
       restoreStatus.textContent = message;
+      try {
+        localStorage.setItem("system-mystery-file-resolved", "true");
+      } catch {
+        // Stockage indisponible (navigation privée, etc.) : l'état ne persistera pas.
+      }
     },
     { once: true }
   );
@@ -124,6 +129,18 @@ document.querySelectorAll("[data-trash-item][data-id]").forEach((item) => {
 updateSummary();
 if (pendingItems().length === 0) {
   revealMysteryFile();
+
+  let mysteryResolved = false;
+  try {
+    mysteryResolved = localStorage.getItem("system-mystery-file-resolved") === "true";
+  } catch {
+    // Stockage indisponible : le fichier mystère réapparaît, tant pis.
+  }
+  if (mysteryResolved) {
+    mysteryItem.classList.add("trash-list__item--resolved");
+    const mysteryTrigger = mysteryItem.querySelector("[data-trash-trigger]");
+    if (mysteryTrigger) mysteryTrigger.disabled = true;
+  }
 }
 
 let activeTrigger = null;
