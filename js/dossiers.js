@@ -59,6 +59,16 @@ folderButtons.forEach((button) => {
   }
 });
 
+// Fichier caché révélé après avoir été restauré depuis la Corbeille.
+try {
+  if (localStorage.getItem("system-mystery-file-restored") === "true") {
+    const mysteryFolder = document.querySelector("[data-mystery-folder]");
+    if (mysteryFolder) mysteryFolder.hidden = false;
+  }
+} catch {
+  // Stockage indisponible (navigation privée, etc.) : le fichier reste caché.
+}
+
 const progressFill = document.querySelector(".system-status__progress-fill");
 const progressSegment = 16;
 

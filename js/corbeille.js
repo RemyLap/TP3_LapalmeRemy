@@ -8,8 +8,31 @@ const statusbarCountEl = document.querySelector("[data-statusbar-count]");
 
 let activeItem = null;
 
+const RESOLVED_STORAGE_KEY = "system-corbeille-resolved-ids";
+
+function getResolvedIds() {
+  try {
+    return JSON.parse(localStorage.getItem(RESOLVED_STORAGE_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function markIdResolved(id) {
+  if (!id) return;
+  try {
+    const ids = getResolvedIds();
+    if (!ids.includes(id)) {
+      ids.push(id);
+      localStorage.setItem(RESOLVED_STORAGE_KEY, JSON.stringify(ids));
+    }
+  } catch {
+    // Stockage indisponible (navigation privée, etc.) : l'état ne persistera pas.
+  }
+}
+
 function pendingItems() {
-  return document.querySelectorAll("[data-trash-item]:not(.trash-list__item--resolved)");
+  return document.querySelectorAll("[data-trash-item]:not(.trash-list__item--resolved):not([data-mystery-item])");
 }
 
 function updateSummary() {
@@ -27,7 +50,7 @@ function revealMysteryFile() {
   restoreAllButton.disabled = true;
 }
 
-function resolveItem(item, message) {
+function resolveItem_(item, message) {
   if (item.classList.contains("trash-list__item--resolved")) return;
 
   item.classList.add("trash-list__item--restoring");
@@ -37,6 +60,7 @@ function resolveItem(item, message) {
       item.classList.remove("trash-list__item--restoring");
       item.classList.add("trash-list__item--resolved");
       item.disabled = true;
+      markIdResolved(item.dataset.id);
 
       updateSummary();
 
@@ -51,12 +75,55 @@ function resolveItem(item, message) {
   );
 }
 
+function resolveMystery(message) {
+  if (mysteryItem.classList.contains("trash-list__item--resolved")) return;
+
+  mysteryItem.classList.add("trash-list__item--restoring");
+  mysteryItem.addEventListener(
+    "animationend",
+    () => {
+      mysteryItem.classList.remove("trash-list__item--restoring");
+      mysteryItem.classList.add("trash-list__item--resolved");
+      restoreStatus.textContent = message;
+    },
+    { once: true }
+  );
+}
+
 function restoreItem(item) {
-  resolveItem(item, "Élément restauré.");
+  if (item === mysteryItem) {
+    resolveMystery("Fichier mystère restauré. Curieux, non ?");
+    try {
+      localStorage.setItem("system-mystery-file-restored", "true");
+    } catch {
+      // Stockage indisponible (navigation privée, etc.) : tant pis pour l'easter egg.
+    }
+  } else {
+    resolveItem_(item, "Élément restauré.");
+  }
 }
 
 function deleteItem(item) {
-  resolveItem(item, "Élément supprimé définitivement.");
+  if (item === mysteryItem) {
+    resolveMystery("Fichier mystère supprimé. Pour de bon, cette fois ?");
+  } else {
+    resolveItem_(item, "Élément supprimé définitivement.");
+  }
+}
+
+// Réappliquer instantanément (sans animation) l'état sauvegardé d'une
+// précédente visite : un dossier restauré/supprimé le reste après un
+// rechargement de la page.
+const resolvedIds = getResolvedIds();
+document.querySelectorAll("[data-trash-item][data-id]").forEach((item) => {
+  if (!resolvedIds.includes(item.dataset.id)) return;
+  item.classList.add("trash-list__item--resolved");
+  const trigger = item.querySelector("[data-trash-trigger]");
+  if (trigger) trigger.disabled = true;
+});
+updateSummary();
+if (pendingItems().length === 0) {
+  revealMysteryFile();
 }
 
 let activeTrigger = null;

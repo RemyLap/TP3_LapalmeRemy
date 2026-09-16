@@ -641,13 +641,17 @@
     @apply visible opacity-100;
   }
 
+  .trash-list__item--mystery.trash-list__item--revealed.trash-list__item--resolved {
+    @apply invisible opacity-0;
+  }
+
   .trash-list__item--mystery .trash-list__label {
     @apply font-semibold text-[var(--win95-red)] no-underline;
   }
 
   .context-menu {
     @apply fixed z-50 min-w-[11rem] border border-[var(--win95-grey-shadow)] py-1 shadow-lg;
-    background: linear-gradient(135deg, #f4f3ee 0%, var(--win95-grey-light) 50%, #d8d5c8 100%);
+    background: var(--win95-grey-pale);
   }
 
   .context-menu__item {
