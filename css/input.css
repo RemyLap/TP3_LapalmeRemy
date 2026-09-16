@@ -202,15 +202,15 @@
 
   /* Sous ~800px, la barre de scroll de la fenêtre entière chevauche la
      bordure épaisse de cet encadré (deux barres de scroll imbriquées) et la
-     casse visuellement. On rend cette bordure décorative invisible à partir
-     de là (garder sa largeur pour ne pas décaler la mise en page). */
+     casse visuellement. On retire complètement ce style de bordure à partir
+     de là. */
   @media (max-width: 800px) {
     .window__section--inset {
-      border-color: transparent;
+      border: 0;
     }
 
     .window__section--inset::before {
-      border-color: transparent;
+      border: none;
     }
   }
 
