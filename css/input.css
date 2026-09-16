@@ -185,6 +185,9 @@
   .window__body {
     @apply grid min-h-0 flex-1 auto-rows-min grid-cols-12 content-start gap-4 overflow-y-auto p-4 sm:p-6;
     background: var(--win95-grey-pale);
+    /* Réserve toujours la place de la barre de scroll pour qu'elle
+       n'empiète jamais sur la bordure droite de la fenêtre. */
+    scrollbar-gutter: stable;
   }
 
   .window__section--inset {
@@ -195,6 +198,20 @@
 
   .page--corbeille .window__section--inset {
     height: 400px;
+  }
+
+  /* Sous ~800px, la barre de scroll de la fenêtre entière chevauche la
+     bordure épaisse de cet encadré (deux barres de scroll imbriquées) et la
+     casse visuellement. On rend cette bordure décorative invisible à partir
+     de là (garder sa largeur pour ne pas décaler la mise en page). */
+  @media (max-width: 800px) {
+    .window__section--inset {
+      border-color: transparent;
+    }
+
+    .window__section--inset::before {
+      border-color: transparent;
+    }
   }
 
   /* Sections "Résumé" et "Action" de même hauteur (au lieu que la dernière
@@ -842,6 +859,10 @@
   .form__input {
     @apply w-full border-2 bg-[var(--win95-grey-pale)] px-2 py-1 text-sm text-black outline-none;
     border-color: var(--win95-grey-shadow) white white var(--win95-grey-shadow);
+  }
+
+  .form__input::placeholder {
+    @apply text-gray-700 opacity-100;
   }
 
   .form__date-wrap {
