@@ -336,6 +336,16 @@
     opacity: 0;
     pointer-events: none;
   }
+
+  /* Popup flottante indépendante de la grille de l'accueil, utilisée pour
+     l'easter egg des boutons de barre de titre sur toutes les pages. */
+  .popup--overlay {
+    @apply fixed top-1/2 left-1/2 z-10000 w-[90vw] max-w-xs -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .popup--overlay .popup__body {
+    @apply items-center justify-center text-center;
+  }
 }
 
 @keyframes popup-in {
