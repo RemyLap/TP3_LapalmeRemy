@@ -116,30 +116,45 @@ function deleteItem(item) {
   }
 }
 
-// Réappliquer instantanément (sans animation) l'état sauvegardé d'une
-// précédente visite : un dossier restauré/supprimé le reste après un
-// rechargement de la page.
+// Réappliquer instantanément (sans transition ni animation) l'état
+// sauvegardé d'une précédente visite : un dossier restauré/supprimé le
+// reste après un rechargement de la page, sans le voir réapparaître puis
+// disparaître à chaque changement de page.
+function hideInstantly(item) {
+  item.style.transition = "none";
+  item.classList.add("trash-list__item--resolved");
+  void item.offsetHeight;
+  requestAnimationFrame(() => {
+    item.style.transition = "";
+  });
+}
+
 const resolvedIds = getResolvedIds();
 document.querySelectorAll("[data-trash-item][data-id]").forEach((item) => {
   if (!resolvedIds.includes(item.dataset.id)) return;
-  item.classList.add("trash-list__item--resolved");
+  hideInstantly(item);
   const trigger = item.querySelector("[data-trash-trigger]");
   if (trigger) trigger.disabled = true;
 });
 updateSummary();
 if (pendingItems().length === 0) {
-  revealMysteryFile();
-
   let mysteryResolved = false;
   try {
     mysteryResolved = localStorage.getItem("system-mystery-file-resolved") === "true";
   } catch {
     // Stockage indisponible : le fichier mystère réapparaît, tant pis.
   }
+
+  if (mysteryResolved) mysteryItem.style.transition = "none";
+  revealMysteryFile();
   if (mysteryResolved) {
     mysteryItem.classList.add("trash-list__item--resolved");
     const mysteryTrigger = mysteryItem.querySelector("[data-trash-trigger]");
     if (mysteryTrigger) mysteryTrigger.disabled = true;
+    void mysteryItem.offsetHeight;
+    requestAnimationFrame(() => {
+      mysteryItem.style.transition = "";
+    });
   }
 }
 
