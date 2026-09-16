@@ -1,4 +1,4 @@
-const folderButtons = document.querySelectorAll(".folder-grid__item");
+const folderButtons = document.querySelectorAll(".folder-grid__item[data-name]");
 const detail = {
   icon: document.querySelector('[data-detail="icon"]'),
   file: document.querySelector('[data-detail="file"]'),
@@ -22,6 +22,7 @@ function selectFolder(button) {
   const corrupted = data.corrupted === "true";
 
   detail.icon.classList.toggle("folder-icon--corrupted", corrupted);
+  detail.icon.classList.toggle("folder-icon--recyclebin", data.iconClass === "recyclebin");
   detail.file.textContent = data.file;
   detail.description.textContent = data.description;
 
@@ -43,12 +44,19 @@ function selectFolder(button) {
     const notRequestable = data.requestable === "false";
     detail.action.classList.toggle("folder-detail__action--hidden", notRequestable);
     detail.action.tabIndex = notRequestable ? -1 : 0;
-    detail.action.href = `demande.html?type=${encodeURIComponent(data.name)}`;
+    detail.action.textContent = data.actionLabel || "Faire une demande";
+    detail.action.href = data.openHref || `demande.html?type=${encodeURIComponent(data.name)}`;
   }
 }
 
 folderButtons.forEach((button) => {
   button.addEventListener("click", () => selectFolder(button));
+
+  if (button.dataset.openHref) {
+    button.addEventListener("dblclick", () => {
+      window.location.href = button.dataset.openHref;
+    });
+  }
 });
 
 const progressFill = document.querySelector(".system-status__progress-fill");

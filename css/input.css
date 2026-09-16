@@ -431,6 +431,23 @@
     @apply h-11 w-14;
   }
 
+  .folder-icon--recyclebin {
+    @apply h-10 w-10 border-0;
+    background: url("../assets/icons/recycle-bin.png") center / contain no-repeat;
+  }
+
+  .folder-icon--recyclebin::before {
+    content: none;
+  }
+
+  /* Dans "Dossier sélectionné", garder exactement les dimensions de
+     .folder-icon--large pour que la mise en page ne bouge jamais, peu
+     importe l'élément sélectionné. */
+  .folder-icon--recyclebin.folder-icon--large {
+    @apply h-11 w-14;
+  }
+
+
   .folder-grid {
     @apply mt-8 grid grid-cols-2 gap-x-3 gap-y-7 sm:grid-cols-3 md:grid-cols-4;
   }
