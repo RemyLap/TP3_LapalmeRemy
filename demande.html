@@ -28,31 +28,35 @@
         <div class="window__address-value"><span class="window__address-root">C:\SYSTEM\</span><span class="window__address-segment">accueil\</span><span class="window__address-segment window__address-segment--current">dossiers\</span><span class="window__address-segment window__address-segment--upcoming">corbeille\</span></div>
       </nav>
 
-      <main class="window__body">
-        <section class="window__section">
+      <main class="window__body window__body--stack">
+        <section class="window__section window__section--inset">
           <h2 class="window__section-title">Fichiers dans ce dossier</h2>
           <div class="folder-grid">
-            <div class="folder-grid__item folder-grid__item--corrupted"><span class="folder-icon folder-icon--corrupted"></span><span class="folder-grid__label">Enlèvement</span></div>
-            <div class="folder-grid__item folder-grid__item--selected"><span class="folder-icon"></span><span class="folder-grid__label">Possession</span></div>
-            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Téléport</span></div>
-            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Contact</span></div>
-            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Régression</span></div>
-            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Double</span></div>
-            <div class="folder-grid__item folder-grid__item--corrupted"><span class="folder-icon folder-icon--corrupted"></span><span class="folder-grid__label">????</span></div>
-            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Invasion</span></div>
-            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Résurrection</span></div>
-            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Vision</span></div>
-            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Amnésie</span></div>
-            <div class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Archives</span></div>
+            <div class="folder-grid__entry folder-grid__entry--corrupted"><span class="folder-grid__item"><span class="folder-icon folder-icon--corrupted"></span><span class="folder-grid__label">Enlèvement</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item folder-grid__item--selected"><span class="folder-icon"></span><span class="folder-grid__label">Possession</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Téléport</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Contact</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Régression</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Double</span></span></div>
+            <div class="folder-grid__entry folder-grid__entry--corrupted"><span class="folder-grid__item"><span class="folder-icon folder-icon--corrupted"></span><span class="folder-grid__label">????</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Invasion</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Résurrection</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Vision</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Amnésie</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Archives</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon"></span><span class="folder-grid__label">Fragment</span></span></div>
+            <div class="folder-grid__entry"><span class="folder-grid__item"><span class="folder-icon folder-icon--recyclebin"></span><span class="folder-grid__label">Corbeille</span></span></div>
           </div>
         </section>
 
-        <section class="window__section">
+        <section class="window__section window__section--shaded -mt-4 border border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white">
           <h2 class="window__section-title">Dossier sélectionné</h2>
           <div class="folder-detail">
-            <span class="folder-icon folder-icon--large"></span>
-            <div class="folder-detail__body">
+            <div class="folder-detail__header">
+              <span class="folder-icon folder-icon--large"></span>
               <p class="folder-detail__name">Possession.sys</p>
+            </div>
+            <div class="folder-detail__body">
               <p class="folder-detail__description">Occupation temporaire du corps. Durée moyenne : 6 à 48h. Effets secondaires possibles : voix modifiée, attirance pour le sel de mer.</p>
               <p class="folder-detail__meta">
                 <span>312 cas archivés</span>
@@ -64,24 +68,16 @@
           </div>
         </section>
 
-        <section class="window__section">
+        <section class="window__section window__section--shaded -mt-4 -mb-4 sm:-mb-6 flex flex-col pb-3 border border-b-[var(--win95-grey-shadow)] border-l-white border-r-[var(--win95-grey-shadow)] border-t-white">
           <h2 class="window__section-title">Statut du système</h2>
           <div class="system-status__stats">
             <div class="system-status__stat">
-              <span class="system-status__stat-value">12</span>
-              <span class="system-status__stat-label">dossiers</span>
-            </div>
-            <div class="system-status__stat">
               <span class="system-status__stat-value">2</span>
-              <span class="system-status__stat-label">corrompus</span>
-            </div>
-            <div class="system-status__stat">
-              <span class="system-status__stat-value">61%</span>
-              <span class="system-status__stat-label">stabilité</span>
+              <span class="system-status__stat-label">fichiers corrompus</span>
             </div>
           </div>
-          <div class="system-status__progress">
-            <p class="system-status__progress-label"><span>Intégrité du système</span><span>61%</span></p>
+          <div class="system-status__progress mt-auto">
+            <p class="system-status__progress-label"><span>Intégrité du système</span><span class="system-status__progress-percent">61%</span></p>
             <div class="system-status__progress-track">
               <div class="system-status__progress-fill" style="width: 61%"></div>
             </div>
