@@ -395,7 +395,7 @@
   }
 
   .window__section-title {
-    @apply text-xs font-bold tracking-wide text-blue-950/70 uppercase;
+    @apply text-xs font-bold tracking-wide text-blue-950 uppercase;
   }
 }
 
@@ -542,7 +542,7 @@
 
 @layer components {
   .system-status__stats {
-    @apply grid grid-cols-3 gap-3;
+    @apply flex justify-center;
   }
 
   .system-status__stat {
@@ -554,15 +554,19 @@
   }
 
   .system-status__stat-label {
-    @apply block text-[10px] tracking-wide text-gray-500 uppercase;
+    @apply block text-sm tracking-wide text-gray-500 uppercase;
   }
 
   .system-status__progress {
-    @apply mt-3 space-y-1 pl-4;
+    @apply mt-3 space-y-1;
   }
 
   .system-status__progress-label {
-    @apply flex justify-between text-xs font-semibold text-gray-700;
+    @apply flex justify-between text-sm font-semibold text-gray-700;
+  }
+
+  .system-status__progress-percent {
+    @apply text-lg font-bold text-gray-900;
   }
 
   .system-status__progress-track {
