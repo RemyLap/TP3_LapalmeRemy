@@ -17,9 +17,9 @@
       <header class="window__titlebar">
         <h1 class="window__title">Mes Dossiers</h1>
         <div class="window__controls">
-          <span class="window__control"></span>
-          <span class="window__control"></span>
-          <span class="window__control"></span>
+          <span class="window__control window__control--minimize"></span>
+          <span class="window__control window__control--maximize"></span>
+          <span class="window__control window__control--close"></span>
         </div>
       </header>
 
@@ -28,7 +28,7 @@
         <div class="window__address-value"><span class="window__address-root">C:\SYSTEM\</span><span class="window__address-segment">accueil\</span><span class="window__address-segment window__address-segment--current">dossiers\</span><span class="window__address-segment window__address-segment--upcoming">corbeille\</span></div>
       </nav>
 
-      <main class="window__body window__body--stack">
+      <div class="window__body window__body--stack">
         <section class="window__section window__section--inset">
           <h2 class="window__section-title">Fichiers dans ce dossier</h2>
           <div class="folder-grid">
@@ -84,7 +84,7 @@
             </div>
           </div>
         </section>
-      </main>
+      </div>
 
       <footer class="window__statusbar">
         <span>12 objet(s)</span>
@@ -105,13 +105,13 @@
       </div>
     </header>
 
-    <nav class="dialog__tabs" aria-label="Onglets du formulaire">
-      <button type="button" class="dialog__tab dialog__tab--active" data-tab-button="general" aria-selected="true" role="tab">Général</button>
-      <button type="button" class="dialog__tab" data-tab-button="avance" aria-selected="false" role="tab">Avancé</button>
+    <nav class="dialog__tabs" aria-label="Onglets du formulaire" role="tablist">
+      <button type="button" id="tab-general" class="dialog__tab dialog__tab--active" data-tab-button="general" aria-selected="true" role="tab" aria-controls="panel-general">Général</button>
+      <button type="button" id="tab-avance" class="dialog__tab" data-tab-button="avance" aria-selected="false" role="tab" aria-controls="panel-avance">Avancé</button>
     </nav>
 
     <main class="dialog__body">
-      <div data-tab-panel="general">
+      <div id="panel-general" data-tab-panel="general" role="tabpanel" aria-labelledby="tab-general">
         <form class="form" id="form-demande" novalidate>
           <fieldset class="form__section">
             <legend class="form__section-title">Identité</legend>
@@ -148,7 +148,7 @@
             <div class="form__row">
               <label class="form__label" for="field-ville">Ville</label>
               <div class="form__control-wrap">
-                <input class="form__input" type="text" id="field-ville" name="ville" placeholder="ex. Saint-Liboire" autocomplete="address-level2" aria-describedby="error-ville">
+                <input class="form__input" type="text" id="field-ville" name="ville" placeholder="ex. Epstein Island" autocomplete="address-level2" aria-describedby="error-ville">
                 <p class="form__error" id="error-ville" data-error-for="ville" aria-live="polite" hidden></p>
               </div>
             </div>
@@ -269,7 +269,7 @@
         </form>
       </div>
 
-      <div data-tab-panel="avance" hidden>
+      <div id="panel-avance" data-tab-panel="avance" role="tabpanel" aria-labelledby="tab-avance" hidden>
         <p class="form__hint">Aucun paramètre avancé pour l'instant. Revenez plus tard.</p>
       </div>
 
